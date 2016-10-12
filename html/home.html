@@ -1,0 +1,202 @@
+<div class="animated slideInLeft" ng-if="pos > 550" scroll-position="pos" ng-class="{slideInLeft: pos > 550, slideOutLeft: pos <= 550}" 
+ style="bottom:5%;left: 0; margin:0px;padding:25px;position:fixed;z-index: 50;background-color: rgba(255,255,255,0.0);border-radius: 0px 20px 0px 0px; ">			
+					<h2 class="text-center psfont">{{giornoSelezionato | date : 'dd-MM'}}</h2>
+					<h1 class="text-center psfont">{{giornoSelezionato | date : 'yyyy'}}</h1>
+<h5 class="text-center" ><span class="badge" style="background-color: rgba(50,190,230,1);color:#000;">{{dataSetDelGiorno.oggiCalendario[0].descr}}</span></h5>
+					<div ng-if="giornoAreac" class="alert alert-danger" role="alert" style="width:120px;">
+					  <h6 class="alert-link text-center"> Area C Non Attiva</h6>
+					</div>
+</div>
+
+<div style="top:25%;right: 0; margin:0px;padding:5px;position:fixed;z-index: 50;background-color: rgba(0,0,0,0.89);border-radius: 20px 0px 0px 20px; ">
+	<h6>
+	<a class="btn btn-block btn-link" aria-label="Left Align" ng-click="variaData(1)" >
+	  <span class="glyphicon glyphicon-plus" aria-hidden="true" style="color:#fff;"></span>
+	</a>
+	</h6>
+	<h6>
+	<a class="btn btn-link" aria-label="Left Align" ng-click="open()" style="margin:1px;padding-bottom:4px;font-size:1.2em;">
+	<span class="glyphicon glyphicon-calendar" aria-hidden="true" style="color:#fff;"></span>			
+	</a>
+	</h6>
+	<h6>
+	<a class="btn btn-block btn-link" aria-label="Left Align" ng-click="variaData(-1)" >
+	  <span class="glyphicon glyphicon-minus" aria-hidden="true" style="color:#fff;"></span>
+	</a>
+	</h6>
+</div>
+
+
+<div class="container-fluid  animated slideInDown" style="padding-top:55px;background: #961212;min-height: 350px;color:#fff;">
+	<div class="jumbotron" style="background: rgba(0,0,0,0);">
+	  <h1 class="text-center" style="font-family: 'Orbitron', sans-serif;">Ingressi</h1>
+	</div>
+</div>
+
+
+
+<div class="container-fluid animated slideInUp" >
+
+
+<div class="col-lg-12" style="background-color: #fff;">
+		<div class="row">
+			<div class="col-lg-12 col-md-12  news" >
+				<div class="col-lg-2 col-md-12" style="background: rgba(255,5,255,0);min-height: 100%;padding-top:35px;">			
+					<div class="animated fadeIn" scroll-position="pos" ng-class="{fadeIn: pos <= 550, fadeOut: pos > 550}" >
+					<h2 class="text-center psfont">{{giornoSelezionato | date : 'dd-MM'}}</h2>
+					<h1 class="text-center psfont">{{giornoSelezionato | date : 'yyyy'}}</h1>
+<h5 class="text-center" ><span class="badge" style="background-color: rgba(50,190,230,1);color:#000;">{{dataSetDelGiorno.oggiCalendario[0].descr}}</span></h5>
+
+					<div ng-if="giornoAreac" class="alert alert-danger" role="alert">
+					  <h6 class="alert-link text-center"> Area C Non Attiva </h6>
+					</div>
+					</div>
+
+
+				</div>
+				<div class="col-lg-5 col-md-12" style="background: rgba(255,5,255,0);min-height: 100%;padding: 25px 35px 0px 40px;border-left: solid 2px rgba(0,0,0,0.04);color: #000;border-right:rgba(0,0,0,0.04) solid 2px;">
+					<ul class="list-group" style="border:none;box-shadow: none;">
+					  <li class="list-group-item" style="font-size:1.3em;border:none;box-shadow: none;">
+					    <span class="badge" style="background-color: rgba(50,190,230,1);color:#000;font-size:1.1em;">{{dataSetDelGiorno.oggiFunzionamenti[0].transiti | number: 0}}</span>
+					    Transiti stimati
+					  </li>					
+					  <li class="list-group-item" style="font-size:1.3em;border:none;box-shadow: none;">
+					    <span class="badge" style="background-color: rgba(0,0,0,0.2);color:#000;font-size:1.1em;">{{dataSetDelGiorno.oggiFunzionamenti[0].transiti_rilevati | number: 0}}</span>
+					    Transiti rilevati
+					  </li>					
+					  <li class="list-group-item"  style="font-size:1.3em;border:none;box-shadow: none;">
+					    <span class="badge" style="background-color: rgba(50,190,230,1);color:#000;font-size:1.1em;">{{dataSetDelGiorno.oggiFunzionamenti[0].veicoli | number: 0}}</span>
+					    Veicoli rilevati
+					  </li>										  
+					  <li class="list-group-item" style="font-size:1.3em;border:none;box-shadow: none;">
+					    <span class="badge" style="background-color: green;font-size:1.1em;">{{dataSetDelGiorno.oggiFunzionamenti[0].pagamento_transiti | currency:"€ ":0}}</span>
+					    Introito potenziale rilevato
+					  </li>					  					  
+					</ul>
+				</div>
+
+				<div class="col-lg-5">					
+					<div class="col-lg-7" >
+						<nvd3 ng-if="pp" options="dataSetGraph.oggiFunzionamentiVarchi.opzioni" data="dataSetGraph.oggiFunzionamentiVarchi.dati" ></nvd3>
+					</div>
+					<div class="col-lg-5">
+						<ul class="list-group" style="margin-top: 45px;border:none; box-shadow:none;">
+						  <li class="list-group-item" style="border:none; box-shadow:none;">
+						    <span class="badge" style="background-color: green;">{{dataSetDelGiorno.oggiFunzionamenti[0].varchi_funzionanti/42*100 | number: 1}}%</span>
+						    Varchi funzionanti
+						  </li>
+
+						  <li class="list-group-item" style="border:none;">
+						    <span class="badge" style="background-color: orange;">{{dataSetDelGiorno.oggiFunzionamenti[0].malfunzionamenti/42*100 | number: 1}}%</span>
+						    Varchi con malfunzionamenti
+						  </li>
+						  <li class="list-group-item" style="border:none;">
+						    <span class="badge" style="background-color: red;">{{dataSetDelGiorno.oggiFunzionamenti[0].guasti/42*100 | number: 1}}%</span>
+						    Varchi guasti
+						  </li>
+						  <li class="list-group-item" style="border:none;">
+						    <span class="badge" style="background-color: gray;">{{dataSetDelGiorno.oggiFunzionamenti[0].introito_mancato | currency:"€ ":0}}</span>
+						    Introito Mancato 
+						  </li>					  						  
+						</ul>	
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row" style="margin-top:50px;margin-bottom:50px;">
+			<div class="col-lg-10 col-lg-offset-1" style="min-height: 2px;background-color: rgba(0,0,0,0.04);">
+			</div>
+		</div>
+		<div class="row" style="margin-top:25px;margin-bottom:25px;">
+				<h1 class="text-center" style="margin-bottom: 100px;">Transiti per varco nelle fasce orarie con provvedimento attivo</h1>
+				<div class="col-lg-10 col-lg-offset-1">
+					
+					<nvd3 ng-if="pp" options="dataSetGraph.oggiAndamentoVarchi.opzioni" data="dataSetGraph.oggiAndamentoVarchi.dati"></nvd3>
+						
+				</div>
+		</div>
+		<div class="row" style="margin-top:150px;margin-bottom:50px;">
+			<div class="col-lg-10 col-lg-offset-1" style="min-height: 2px;background-color: rgba(0,0,0,0.04);">
+			</div>
+		</div>
+
+		<div class="row" style="margin-top:25px;margin-bottom:25px;">
+				<h1 class="text-center" style="margin-bottom: 100px;">
+				Andamento Orario degli ingressi</h1>
+				<div class="col-lg-10 col-lg-offset-1">
+					
+					<nvd3 ng-if="pp" options="dataSetGraph.periodoMultiTest.opzioni" data="dataSetGraph.periodoMultiTest.dati"></nvd3>
+					<nvd3 ng-if="false" options="dataSetGraph.oggiAndamentoOrario.opzioni" data="dataSetGraph.oggiAndamentoOrario.dati"></nvd3>
+									</div>
+		</div>
+
+
+
+		<div class="row" style="margin-top:150px;margin-bottom:150px;">
+			<div class="col-lg-8 col-lg-offset-2" style="min-height: 2px;background-color: rgba(0,0,0,0.04);">
+			</div>
+		</div>
+
+
+		<div class="row" style="margin-top:25px;margin-bottom:25px;">
+			<h1 class="text-center"> Ripartizione per classi</h1>		
+			
+			<div class="col-lg-3  col-lg-offset-2" >
+			<nvd3 ng-if="pp" options="dataSetGraph.oggiClassiVeicoli.opzioni" data="dataSetGraph.oggiClassiVeicoli.dati"></nvd3>
+			<h4 class="text-center"> Veicoli </h4>
+			</div>
+			<div class="col-lg-3">
+			<nvd3 ng-if="pp" options="dataSetGraph.oggiClassiTransiti.opzioni" data="dataSetGraph.oggiClassiTransiti.dati"></nvd3>
+			<h4 class="text-center"> Transiti </h4>
+			</div>
+			<div class="col-lg-2" style="padding-top: 90px;">
+				<ul class="list-group" style="border: 0px;">
+						  <li class="list-group-item" style="border: 0px;">
+						    <span class="badge" style="background-color: orange;"> </span>
+						    Veicoli Autorizzati
+						  </li>					
+						  <li class="list-group-item" style="border: 0px;">
+						    <span class="badge" style="background-color: green;"> </span>
+						    Veicoli Ecologici
+						  </li>										  
+						  <li class="list-group-item" style="border: 0px;">
+						    <span class="badge" style="background-color: yellow;"> </span>
+						    Veicoli intestati a Residenti
+						  </li>
+						  <li class="list-group-item" style="border: 0px;">
+						    <span class="badge" style="background-color: purple;"> </span>
+						    Veicoli di Servizio
+						  </li>
+						  <li class="list-group-item" style="border: 0px;">
+						    <span class="badge" style="background-color: gray;"> </span>
+						    Altri veicoli Paganti
+						  </li>
+						</ul>
+			</div>
+		</div>
+
+
+		<div class="row" style="margin-top:150px;margin-bottom:150px;">
+			<div class="col-lg-8 col-lg-offset-2" style="min-height: 2px;background-color: rgba(0,0,0,0.04);">
+			</div>
+		</div>
+
+
+		<div class="row" style="margin-top:25px;margin-bottom:25px;">
+				<div class="col-lg-10 col-lg-offset-1">
+					<h1 class="text-center" style="margin-bottom:55px;"> Transiti giornalieri - Ultimi 30 giorni</h1>	
+					<nvd3 ng-if="pp" options="dataSetGraph.periodoAndamentoClassi.opzioni" data="dataSetGraph.periodoAndamentoClassi.dati"></nvd3>
+				</div>
+		</div>
+
+		<div class="row" style="margin-top:150px;margin-bottom:150px;">
+			
+
+			
+			</div>
+		</div> 
+</div>
+
+
+

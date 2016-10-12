@@ -1,0 +1,42 @@
+{
+    "dati": [
+        {
+            "transiti_vds": "4502", 
+            "transiti_paganti": "33760", 
+            "transiti_residenti": "8532", 
+            "transiti": "86735", 
+            "transiti_autorizzati": "25269", 
+            "transiti_tot_classi": "83684", 
+            "veicoli_paganti": "24001", 
+            "veicoli_tot_classi": "48991", 
+            "anno": "2016", 
+            "veicoli_residenti": "5360", 
+            "transiti_ecologici": "11621", 
+            "veicoli": "48991", 
+            "veicoli_vds": "2557", 
+            "lastyear": "1", 
+            "veicoli_autorizzati": "9543", 
+            "transiti_stimati": "3051", 
+            "veicoli_ecologici": "7530"
+        }, 
+        {
+            "transiti_vds": "4849", 
+            "transiti_paganti": "32704", 
+            "transiti_residenti": "8748", 
+            "transiti": "91248", 
+            "transiti_autorizzati": "24639", 
+            "transiti_tot_classi": "82033", 
+            "veicoli_paganti": "23615", 
+            "veicoli_tot_classi": "48825", 
+            "anno": "2015", 
+            "veicoli_residenti": "5595", 
+            "transiti_ecologici": "11093", 
+            "veicoli": "48825", 
+            "veicoli_vds": "2820", 
+            "lastyear": "0", 
+            "veicoli_autorizzati": "9442", 
+            "transiti_stimati": "9215", 
+            "veicoli_ecologici": "7353"
+        }
+    ]
+}

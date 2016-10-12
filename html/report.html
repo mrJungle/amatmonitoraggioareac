@@ -1,0 +1,509 @@
+<div class="indice indiceOut rotate" ng-class="{'indiceOut': !toolsClass, 'indiceIn': toolsClass} ">
+<div class="col-lg-12 col-xs-12" style="margin:0px;padding:0px;" >
+  <a class="btn btn-link pull-right" aria-label="Right Align" ng-click="IndiceOpen()" style="color:#fff;margin:0px;"><h2><span class="glyphicon glyphicon-th-list rotate" ng-class="{'glyphicon-th-list': !toolsClass, 'glyphicon-remove': toolsClass} " ></span></h2></a> 
+  </div>
+
+<div  class="col-lg-12 col-xs-12 pOut"  ng-class="{'pOut': !toolsClass, 'pIn': toolsClass} ">
+
+<h2 class="text-center" style="margin-bottom: 20px;font-family: 'Orbitron', sans-serif;">INDICE</h2>
+
+<h4 ng-click="goto('intro')" style="color:#fff;margin:0px;">Premessa </h4>
+
+  <hr style="margin:5px 5px  5px  5px ;border-top: rgba(255,255,255, 0.18) solid 1px;">
+
+<h4 ng-click="goto('datigenerali')" style="color:#fff;margin:0px;">Dati Generali </h4>
+
+  <hr style="margin:5px 5px  5px  5px ;border-top: rgba(255,255,255, 0.18) solid 1px;">
+
+<h4 ng-click="goto('ingressigiorno')" style="color:#fff;margin:0px;">Andamento degli ingressi </h4>
+
+  <hr style="margin:5px 5px  5px  5px ;border-top: rgba(255,255,255, 0.18) solid 1px;">
+
+<h4 ng-click="goto('classi')" style="color:#fff;margin:0px;">Classificazione degli accessi </h4>
+
+  <hr style="margin:5px 5px  5px  5px ;border-top: rgba(255,255,255, 0.18) solid 1px;">
+
+<h4 ng-click="goto('orario')" style="color:#fff;margin:0px;">Andamento orario </h4>
+
+  <hr style="margin:5px 5px  5px  5px ;border-top: rgba(255,255,255, 0.18) solid 1px;">
+
+<h4  ng-click="goto('freq')" style="color:#fff;margin:0px;">Frequenza degli accessi</h4>
+
+
+  </div> 
+</div>
+
+<div ng-if ="false" class="indice animated slideInDown indiceOut rotate" ng-class="{'slideInRight': toolsClass, 'slideOutRight': !toolsClass} ">
+  <a class="btn btn-link" aria-label="Right Align" ng-click="IndiceOpen()"><h2><span class="glyphicon glyphicon-th-list rotate" ng-class="{'glyphicon-th-list': toolsClass, 'glyphicon-chevron-left': !toolsClass} " >INDICE</span></h2>
+    </a> 
+</div>
+
+
+
+<div class="container-fluid  animated slideInDown" style="padding-top:55px;margin:0px;background: #961212;min-height: 450px;color:#fff;margin-bottom: -150px;">
+	<div class="jumbotron" style="background: rgba(0,0,0,0);">
+	  <h1 class="text-center" style="font-family: 'Orbitron', sans-serif;">Report</h1>
+	  <p class="text-center" style="font-family: 'Orbitron', sans-serif;" >Aggiornamento degli ingressi ad Area C</p>
+	</div>
+</div>
+
+
+<div class="container animated slideInUp" style="background: rgba(0, 0, 0, 0.4);border-radius: 5px;margin-bottom: 250px;padding: 50px 30px 30px 30px;font-size: 1.4em;" >
+	
+
+
+  <div id ="intro" class="col-lg-12 col-md-12  col-sm-12 col-xs-12"  style="background: rgba(255,255,255,1);margin-bottom: 15px;padding-top: 30px;padding-bottom: 30px;border-left: solid 5px cyan;">
+    <div class="row">
+      <div class="col-lg-3" style="background-color: cyan;min-height: 55px;padding-top:15px;margin-left:-20px;">
+      <h4 class="text-center" style="font-family: 'Orbitron', sans-serif;">0 - Premessa</h4>
+      </div>
+      <div class="col-lg-9">
+
+
+      </div>
+      </div>
+      <hr>
+
+
+      <div class="row" style="padding-right: 20px;">
+<div class="col-lg-11 col-lg-offset-1">
+        <p class="text-justify">Il presente report sintetizza i risultati del monitoraggio Area C al <strong>{{(web_0Promise|orderBy:'-anno')[0].data_fine}}</strong>.</p>
+        <p class="text-justify">I dati riportati sono ricavati dal sistema di varchi elettronici che controlla tutti i transiti veicolari in ingresso all’area. Per ogni targa in transito, sono ricavate dal database della motorizzazione civile le informazioni necessarie per una classificazione dei veicoli in funzione della tipologia, dell’alimentazione e della classe Euro, al fine di caratterizzare il veicolo in una delle classi definite dal provvedimento. </p>
+      
+        <p class="text-justify">Contestualmente alla redazione del report sono state aggiornate le serie storiche usate per diagnosticare e stimare i transiti ai varchi durante i periodi di malfunzionamento. Pertanto ci possono essere delle incongruenze con i valori dei transiti riportati in altri report di monitoraggio Area C</p>
+</div>
+
+
+</div>
+<hr style="margin-bottom:50px;margin-top:20px;">
+</div>
+
+  <div id ="datigenerali" class="col-lg-12 col-md-12  col-sm-12 col-xs-12"  style="background: rgba(255,255,255,1);margin-bottom: 15px;padding-top: 45px;padding-bottom: 30px;border-left: solid 5px orange;min-height: 900px;">
+    <div class="row">
+      <div class="col-lg-3" style="background-color: orange;min-height: 55px;padding-top:15px;margin-left:-20px;">
+      <h4 class="text-center" style="font-family: 'Orbitron', sans-serif;">0 - Dati Generali</h4>
+      </div>
+      <div class="col-lg-9">
+
+
+      </div>
+      </div>
+      <hr>
+<div class="row" style="padding-right: 20px;">
+
+<div class="col-lg-11 col-lg-offset-1" style="margin-top: 40px;">
+  <uib-tabset type="pills">
+    <uib-tab ng-repeat="w in web_0Promise|orderBy:'-anno'" heading="{{w.anno}}">
+
+
+<ul class="list-group" style="margin: 0px;padding:0px;box-shadow:none;">
+  <li class="list-group-item" style="margin: 35px 0px 35px 0px;padding:0px;border:solid #fff 0px;">
+  <p class="text-justify">Durante il Periodo considerato: dal <strong>{{w.data_inizio }}</strong> al <strong>{{ w.data_fine }}</strong> il provvedimento Area C è stato applicato per <strong>{{w.giorni_areac| number: 0 }} giorni</strong>
+  </p>
+  <p class="text-justify">Durante tale periodo si sono registrate le seguenti sospensioni:
+  <ul style="padding-right: 20px;">
+    <li ><strong>{{ w.festivita_infrasettimanali }}</strong> giorni di sospensione per festività infrasettimanali.</li>
+  <li ><strong>{{ w.sciopero }}</strong> giorni di sospensione del provvedimento per sciopero del Trasporto Pubblico Locale.</li>
+  <li ><strong>{{ w.sospensione }}</strong> giorni di sospensione della ZTL (durante la prima settimana di gennaio fino all’Epifania, nella settimana centrale di agosto e durante la sospensione natalizia)</li></ul>
+  </p>
+
+  <p class="text-justify">Sempre durante tale periodo il totale ingressi di accessi rilevati durante le fasce orarie con provvedimento attivo è di <strong>{{w.transiti_fasce_areac | number: 0}}</strong> transiti. Corripondenti ad un valore medio di ingressi giornalieri pari a <strong>{{ w.transiti_medi_fasce_areac| number: 0 }}</strong> </p>
+  <p class="text-justify">Considerando anche la fascia oraria del giovedì fra le h 18:00 e le h 19:30, interessata dall’anticipo del termine giornaliero del provvedimento, i valori di ingressi si portano rispettivamente a <strong>{{w.transiti_730_1930| number: 0}}</strong> e <strong>{{w.transiti_medi_730_1930| number: 0}}</strong> </p>
+  </li>
+</ul>
+    </uib-tab>
+  </uib-tabset>
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="col-lg-11 col-lg-offset-1" style="margin-top: 10px;">
+    <h5 style="margin-top: 5px;">Considerando lo stesso periodo nelle differenti annualità si sono rilevati i seguenti valori:<h5>
+    <div style="margin-top: 35px;">
+      <table class="table table-hover"> 
+      <thead> <tr> 
+      <th class="text-center">Anno</th> 
+      <th class="text-center">Periodo</th> 
+      <th class="text-center">N° giorni</th> 
+      <th class="text-center">Transiti totali fasce Area C</th> 
+      <th class="text-center">Transiti medi giornalieri fasce Area C</th> 
+      <th class="text-center">Transiti medi giornalieri 7:30-19:30</th> 
+      </tr> 
+      </thead> 
+      <tbody> 
+      <tr ng-repeat="w in web_0Promise|orderBy:'-anno'"> 
+      <td class="text-center">{{w.anno}}</td> 
+      <td class="text-center">{{w.data_inizio_sottoperiodo}} - {{w.data_fine_sottoperiodo}}</td> 
+      <td class="text-center">{{w.giorni_areac_sottoperiodo| number: 0}}</td> 
+      <td class="text-center">{{w.transiti_fasce_areac_sottoperiodo| number: 0}}</td> 
+      <td class="text-center">{{w.transiti_medi_fasce_areac_sottoperiodo| number: 0}}</td> 
+      <td class="text-center">{{w.transiti_medi_730_1930_sottoperiodo| number: 0}}</td> 
+      </tr> 
+       
+      </tbody> 
+      </table>
+    </div>
+</div>
+
+</div>
+
+<div class="row">
+
+
+
+
+
+<div class="col-lg-12" style="margin-top: 70px;">
+
+<nvd3 options="dataSetGraph_1.opzioni" data="dataSetGraph_1.dati"></nvd3>
+<h5 class="text-center">Tab 0.1 - Confronto annuale degli andamenti medi giornalieri nel periodo considerato</h5> 
+</div>
+</div>
+
+
+
+<div class="row">
+
+<div class="col-lg-12" style="margin-top: 70px;">
+<nvd3 options="dataSetGraph_2.opzioni" data="dataSetGraph_2.dati"></nvd3>
+<h5 class="text-center">Tab 0.2 - Confronto annuale degli ingressi totali nel periodo considerato</h5>
+</div>
+
+
+
+  </div>  
+<hr style="margin-bottom:50px;margin-top:20px;">
+
+</div>
+
+
+
+
+
+<div id = "ingressigiorno" class="col-lg-12 col-md-12  col-sm-12 col-xs-12"  style="background: rgba(255,255,255,1);margin-bottom: 25px;padding-top: 30px;padding-bottom: 30px;border-left: solid 5px green;min-height: 900px;">
+<div class="row" >
+
+
+
+<div  class="col-lg-3" style="background-color: green;min-height: 55px;padding-top:15px;margin-left:-20px;">
+<h4  class="text-center" style="font-family: 'Orbitron', sans-serif;">1 - TRAFFICO IN INGRESSO</h4>
+</div>
+
+<div class="col-lg-9">
+
+</div>
+</div>
+
+
+      <hr>
+
+      <div class="row" style="padding-right: 20px;">
+
+<div class="col-lg-11 col-lg-offset-1" style="margin-top: 40px;">
+ <ul class="list-group" style="margin: 0px;padding:0px;box-shadow:none;">
+  <li class="list-group-item" style="margin: 35px 0px 35px 0px;padding:0px;border:solid #fff 0px;">
+ 
+  <p class="text-justify">
+Il numero medio di ingressi giornalieri al <strong>{{ w.data_fine }}</strong> durante le fasce orarie <strong>07.30 - 19.30</strong> dei giorni con il provvedimento attivo risulta pari a <strong>{{(web_0Promise|orderBy:'-anno')[0].transiti_medi_730_1930_sottoperiodo| number: 0}}</strong>  ingressi/giorno, con una variazione di circa <strong>{{((web_0Promise|orderBy:'-anno')[0].transiti_medi_730_1930_sottoperiodo) - ((web_0Promise|orderBy:'-anno')[1].transiti_medi_730_1930_sottoperiodo)| number: 0}}</strong>ingressi <strong>{{(((web_0Promise|orderBy:'-anno')[0].transiti_medi_730_1930_sottoperiodo)/((web_0Promise|orderBy:'-anno')[1].transiti_medi_730_1930_sottoperiodo)-1)*100| number: 2}}%</strong> rispetto all'anno precedente. Mentre rispetto agli ingressi medi giornalieri registrati durante il 2011, con il provvedimento Ecopass in esercizio, il calo del traffico risulta pari al <strong>{{(((web_0Promise|orderBy:'-anno')[0].transiti_medi_730_1930_sottoperiodo)/(130000)-1)*100| number: 2}}%</strong> per una 
+riduzione media di circa <strong>{{((web_0Promise|orderBy:'-anno')[0].transiti_medi_730_1930_sottoperiodo) - (130000)| number: 0}}</strong> ingressi/giorno.
+  </p>
+
+ <p class="text-justify">
+ Considerando esclusivamente le fasce orarie del provvedimento attivo (fino alle 18.00 durante i giovedì feriali) la media degli ingressi scende a <strong>{{(web_0Promise|orderBy:'-anno')[0].transiti_medi_fasce_areac_sottoperiodo| number: 0}}</strong> per una variaizone di circa <strong>{{((web_0Promise|orderBy:'-anno')[0].transiti_medi_fasce_areac_sottoperiodo) - ((web_0Promise|orderBy:'-anno')[1].transiti_medi_fasce_areac_sottoperiodo)| number: 0}}</strong>
+ingressi al giorno rispetto all’anno precedente (<strong>{{(((web_0Promise|orderBy:'-anno')[0].transiti_medi_fasce_areac_sottoperiodo)/((web_0Promise|orderBy:'-anno')[1].transiti_medi_fasce_areac_sottoperiodo)-1)*100| number: 2}}%</strong>%).
+</p>
+
+  </li>
+</ul>
+
+</div>
+</div>
+
+<div class="row" style="padding-right: 20px;">
+  <div class="col-lg-12" style="margin-top: 70px;">
+    <nvd3 options="dataSetGraph_4.opzioni" data="dataSetGraph_4.dati"></nvd3>
+    <h5 class="text-center">Tab 0.3 - Andamento medio giornaliero per mense</h5> 
+  </div>
+  <div class="col-lg-12" style="margin-top: 70px;">
+    <nvd3 options="dataSetGraph_3.opzioni" data="dataSetGraph_3.dati"></nvd3>
+    <h5 class="text-center">Tab 0.4 - Andamento medio giornaliero per settimana</h5> 
+  </div>
+</div>
+
+<hr style="margin-bottom:50px;margin-top:20px;">
+</div>
+
+
+<div id = "classi" class="col-lg-12 col-md-12  col-sm-12 col-xs-12"  style="background: rgba(255,255,255,1);margin-bottom: 25px;padding-top: 30px;padding-bottom: 30px;border-left: solid 5px yellow;min-height: 900px;">
+  <div class="row" >
+    <div  class="col-lg-3" style="background-color: yellow;min-height: 55px;padding-top:15px;margin-left:-20px;">
+    <h4  class="text-center" style="font-family: 'Orbitron', sans-serif;">2 - Ripartizione degli Ingressi </h4>
+    </div>
+
+    <div class="col-lg-9">
+
+    </div>    
+  </div>
+
+
+      <hr>
+
+<div class="row" style="padding-right: 20px;">
+
+<div class="col-lg-11 col-lg-offset-1" style="margin-top: 40px;">
+ <ul class="list-group" style="margin: 0px;padding:0px;box-shadow:none;">
+  <li class="list-group-item" style="margin: 35px 0px 35px 0px;padding:0px;border:solid #fff 0px;">
+ 
+
+  <p class="text-justify">
+Al {{(web_0Promise|orderBy:'-anno')[0].data_fine}} <strong>la ripartizione percentuale media dei veicoli</strong> che giornalmente hanno effettuato uno o piu accessi durante il {{web_3MacroclassiLastPromise[0].anno}} <strong>{{out_deltaVeicoli}}</strong> ed in particolare sono state rilevate le seguenti proporzioni:
+</p>
+
+<ul class="list-group" style="border: none;box-shadow: none;">
+  <li class="list-group-item" style="border: none;">Il <strong>{{web_3MacroclassiLastPromise[0].veicoli_autorizzati/web_3MacroclassiLastPromise[0].veicoli_tot_classi * 100 | number: 2}}%</strong> dei veicoli che giornalmente effettuano accessi alla ZTL appartiene alla categoria degli <strong>Autorizzati</strong> con una variaizone del {{ (web_3MacroclassiLastPromise[1].veicoli_autorizzati/web_3MacroclassiLastPromise[1].veicoli_tot_classi * 100)-(web_3MacroclassiLastPromise[0].veicoli_autorizzati/web_3MacroclassiLastPromise[0].veicoli_tot_classi * 100) | number: 2}} % rispetto al {{web_3MacroclassiLastPromise[1].anno}}. (Veicoli a cui è stato concessa una deroga al pagamento per particolari categorie di utenti come le forze di polizia, le autombulanzo o i taxi)
+  </li>
+  <li class="list-group-item" style="border: none;">Mediamente il <strong>{{web_3MacroclassiLastPromise[0].veicoli_ecologici/web_3MacroclassiLastPromise[0].veicoli_tot_classi * 100 | number: 2}}%</strong> dei veicoli che giornalmente effettuano accessi alla ZTL appartiene alla categoria dei veicoli defini <strong>Ecologici</strong>. Rispetto al {{web_3MacroclassiLastPromise[1].anno}} tale categoria presenta una variaizone del {{ (web_3MacroclassiLastPromise[1].veicoli_ecologici/web_3MacroclassiLastPromise[1].veicoli_tot_classi * 100)-(web_3MacroclassiLastPromise[0].veicoli_ecologici/web_3MacroclassiLastPromise[0].veicoli_tot_classi * 100) | number: 2}}%. (Tutti i veicoli con bassi livelli emissivi a cui è stato concesso di accedere alla cerchia dei bastioni gratuitamente che non siano gia stati classificati come Autorizzati)</li>
+  <li class="list-group-item" style="border: none;">Il <strong>{{web_3MacroclassiLastPromise[0].veicoli_residenti/web_3MacroclassiLastPromise[0].veicoli_tot_classi * 100 | number: 2}}%</strong> appartiene alla categoria dei <strong>Residenti</strong> con una variaizone del {{ (web_3MacroclassiLastPromise[1].veicoli_residenti/web_3MacroclassiLastPromise[1].veicoli_tot_classi * 100)-(web_3MacroclassiLastPromise[0].veicoli_residenti/web_3MacroclassiLastPromise[0].veicoli_tot_classi * 100) | number: 2}} % rispetto al {{web_3MacroclassiLastPromise[1].anno}}. (A tale categoria appartengono tutti i veicoli regolarmente intestati ai residenti e che non siano già stati classificati come "Autorizzati" o "Ecologici")</li>
+  <li class="list-group-item" style="border: none;">I <strong>Veicoli di servizio</strong> rappresentano il <strong>{{web_3MacroclassiLastPromise[0].veicoli_vds/web_3MacroclassiLastPromise[0].veicoli_tot_classi * 100 | number: 2}}%</strong> dei veicoli che effettuano accessi in Area C con una variaizone del {{ (web_3MacroclassiLastPromise[1].veicoli_vds/web_3MacroclassiLastPromise[1].veicoli_tot_classi * 100)-(web_3MacroclassiLastPromise[0].veicoli_vds/web_3MacroclassiLastPromise[0].veicoli_tot_classi * 100) | number: 2}} % rispetto al {{web_3MacroclassiLastPromise[1].anno}}. (Tutti i veicoli regolarmente registrati che svolgono attività di carico scarico all'interno della ztl e convenzionati con il comune per un pagamento ridotto del ticket di accesso)</li>
+  <li class="list-group-item" style="border: none;">Il restante <strong>{{web_3MacroclassiLastPromise[0].veicoli_paganti/web_3MacroclassiLastPromise[0].veicoli_tot_classi * 100 | number: 2}}%</strong> è associato alla categoria degli <strong>Altri paganti</strong> e presentano una variaizone del {{ (web_3MacroclassiLastPromise[1].veicoli_paganti/web_3MacroclassiLastPromise[1].veicoli_tot_classi * 100)-(web_3MacroclassiLastPromise[0].veicoli_paganti/web_3MacroclassiLastPromise[0].veicoli_tot_classi * 100) | number: 2}} % rispetto al {{web_3MacroclassiLastPromise[1].anno}}. (All'interno di tale macroclasse rientrano tutti i vecoli che non appartenenti ad una delle precedenti categorie)</li>
+</ul>
+
+  <p class="text-justify">
+Considerando la ripartizione percentuale media dei transiti {{out_deltaTransiti}} sono state rilevate variazioni consistenti rispetto all'anno precedente. Inoltre la differenza percentuale riscontrata tra i veicoli giornalieri rispetto ai transiti giornalieri {{out_deltaTransitiVeicoli}} confermano la ripetitivtà degli accessi dei veicoli Autorizzati durante la giornata contro la singolarità dela categoria "Altri paganti" i cui componenti tipicamente effettuano un solo accesso durante la giornata.
+</p>
+
+  </li>
+</ul>
+
+</div>
+</div>
+
+<div class="row" style="padding-right: 20px;">
+
+      <div class="col-lg-4" >
+  
+    <nvd3 options="dataSetGraph_5.opzioni" data="dataSetGraph_5.dati"></nvd3>
+    <h5 class="text-center" style="margin-top:-50px;">Tab 0.5 - Transiti Macroclassi {{web_3MacroclassiLastPromise[0].anno}}</h5> 
+      </div>
+      <div class="col-lg-4">
+      <nvd3 options="dataSetGraph_6.opzioni" data="dataSetGraph_6.dati"></nvd3>
+    <h5 class="text-center" style="margin-top:-50px;">Tab 0.6 - Veicoli Macroclassi {{web_3MacroclassiLastPromise[0].anno}}</h5> 
+
+      </div>
+      <div class="col-lg-4" style="padding-top: 120px;">
+        <ul class="list-group" style="border: 0px;box-shadow: none;">
+              <li class="list-group-item" style="border: 0px;">
+                <span class="badge" style="background-color: orange;"> </span>
+                Veicoli Autorizzati
+              </li>         
+              <li class="list-group-item" style="border: 0px;">
+                <span class="badge" style="background-color: green;"> </span>
+                Veicoli Ecologici
+              </li>                     
+              <li class="list-group-item" style="border: 0px;">
+                <span class="badge" style="background-color: yellow;"> </span>
+                Veicoli intestati a Residenti
+              </li>
+              <li class="list-group-item" style="border: 0px;">
+                <span class="badge" style="background-color: purple;"> </span>
+                Veicoli di Servizio
+              </li>
+              <li class="list-group-item" style="border: 0px;">
+                <span class="badge" style="background-color: gray;"> </span>
+                Altri veicoli Paganti
+              </li>
+            </ul>
+      </div>
+    </div>
+
+  <div class="row" style="margin-top:120px;">
+    <div class="col-lg-12" style="padding-left:4%;">
+    <h1 style="margin-left: 0px;border-bottom: 4px solid orange;">Autorizzati</h1>
+      <table class="table table-bordered"> 
+        <thead> 
+          <tr> 
+            <th></th> 
+            <th style="max-width: 150px;text-align: center;">Veicoli commerciali, bus e veicoli speciali</th>
+            <th style="text-align: center;">%</th> 
+            <th style="max-width: 150px;text-align: center;">Autovetture trasporto persone</th>
+            <th style="text-align: center;">%</th> 
+          </tr>          
+        </thead> 
+        <tbody> 
+          <tr ng-repeat="w in web_3MacroclassiAnnoPromise|orderBy:'-anno'">
+            <th scope="row"  style="max-width: 150px;text-align: center;">{{w.anno}}</th>
+            <td style="max-width: 150px;text-align: center;">{{spalmaNC(w.autorizzati_persone, w.autorizzati_merci, w.autorizzati_bus, w.autorizzati_nc, 2) | number: 0}}</td>
+            <td style="text-align: center;">{{spalmaNCperc(w.autorizzati_persone, w.autorizzati_merci, w.autorizzati_bus, w.autorizzati_nc, 2) | number: 1}}</td>
+            <td style="max-width: 150px;text-align: center;">{{spalmaNC(w.autorizzati_persone, w.autorizzati_merci, w.autorizzati_bus, w.autorizzati_nc, 1) | number: 0}}</td>
+            <td style="text-align: center;">{{spalmaNCperc(w.autorizzati_persone, w.autorizzati_merci, w.autorizzati_bus, w.autorizzati_nc, 1) | number: 1}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  <div class="row" style="margin-top:50px;">
+    <div class="col-lg-12" style="padding-left:4%;">
+      <h1 style="margin-left: 0px;border-bottom: 4px solid green;">Ecologici</h1>
+      <table class="table table-bordered"> 
+        <thead> 
+          <tr> 
+            <th style="text-align: center;"></th> 
+            <th style="max-width: 150px;text-align: center;">Veicoli commerciali, bus e veicoli speciali</th>
+            <th style="text-align: center;">%</th> 
+            <th style="max-width: 150px;text-align: center;">Autovetture trasporto persone</th>
+            <th style="text-align: center;">%</th> 
+          </tr>          
+        </thead> 
+        <tbody> 
+          <tr ng-repeat="w in web_3MacroclassiAnnoPromise|orderBy:'-anno'">
+            <th scope="row"  style="max-width: 150px;text-align: center;">{{w.anno}}</th>
+            <td style="max-width: 150px;text-align: center;">{{(spalmaNC(w.ecologici_persone, w.ecologici_merci, w.ecologici_bus, w.ecologici_nc, 2)) | number: 0}}</td>
+            <td style="text-align: center;">{{spalmaNCperc(w.ecologici_persone, w.ecologici_merci, w.ecologici_bus, w.ecologici_nc, 2) | number: 1}}</td>
+            <td style="max-width: 150px;text-align: center;">{{spalmaNC(w.ecologici_persone, w.ecologici_merci, w.ecologici_bus, w.ecologici_nc, 1) | number: 0}}</td>
+            <td style="text-align: center;">{{spalmaNCperc(w.ecologici_persone, w.ecologici_merci, w.ecologici_bus, w.ecologici_nc, 1) | number: 1}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  <div class="row" style="margin-top:50px;">
+    <div class="col-lg-12" style="padding-left:4%;">
+      <h1 style="margin-left: 0px;border-bottom: 4px solid yellow;">Residenti</h1>
+      <table class="table table-bordered"> 
+        <thead> 
+          <tr> 
+            <th></th> 
+            <th style="max-width: 150px;text-align: center;">Veicoli commerciali, bus e veicoli speciali</th>
+            <th style="text-align: center;">%</th> 
+            <th style="max-width: 150px;text-align: center;">Autovetture trasporto persone</th>
+            <th style="text-align: center;">%</th> 
+          </tr>          
+        </thead> 
+        <tbody> 
+          <tr ng-repeat="w in web_3MacroclassiAnnoPromise|orderBy:'-anno'">
+            <th scope="row"  style="max-width: 150px;text-align: center;">{{w.anno}}</th>
+            <td style="max-width: 150px;text-align: center;">{{spalmaNC(w.residenti_persone, w.residenti_merci, w.residenti_bus, w.residenti_nc, 2) | number: 0}}</td>
+            <td style="text-align: center;">{{spalmaNCperc(w.residenti_persone, w.residenti_merci, w.residenti_bus, w.residenti_nc, 2) | number: 1}}</td>
+            <td style="max-width: 150px;text-align: center;">{{spalmaNC(w.residenti_persone, w.residenti_merci, w.residenti_bus, w.residenti_nc, 1) | number: 0}}</td>
+            <td style="text-align: center;">{{spalmaNCperc(w.residenti_persone, w.residenti_merci, w.residenti_bus, w.residenti_nc, 1) | number: 1}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  <div class="row" style="margin-top:50px;">
+    <div class="col-lg-12" style="padding-left:4%;">
+      <h1 style="margin-left: 0px;border-bottom: 4px solid purple;">Veicoli di servizio</h1>
+      <table class="table table-bordered"> 
+        <thead> 
+          <tr> 
+            <th></th> 
+            <th style="max-width: 150px;text-align: center;">Veicoli commerciali, bus e veicoli speciali</th>
+            <th style="text-align: center;">%</th> 
+            <th style="max-width: 150px;text-align: center;">Autovetture trasporto persone</th>
+            <th style="text-align: center;">%</th> 
+          </tr>          
+        </thead> 
+        <tbody> 
+          <tr ng-repeat="w in web_3MacroclassiAnnoPromise|orderBy:'-anno'">
+            <th scope="row"  style="max-width: 150px;text-align: center;">{{w.anno}}</th>
+            <td style="max-width: 150px;text-align: center;">{{spalmaNC(w.vds_persone, w.vds_merci, w.vds_bus, w.vds_nc, 2) | number: 0}}</td>
+            <td style="text-align: center;">{{spalmaNCperc(w.vds_persone, w.vds_merci, w.vds_bus, w.vds_nc, 2) | number: 1}}</td>
+            <td style="max-width: 150px;text-align: center;">{{spalmaNC(w.vds_persone, w.vds_merci, w.vds_bus, w.vds_nc, 1) | number: 0}}</td>
+            <td style="text-align: center;">{{spalmaNCperc(w.vds_persone, w.vds_merci, w.vds_bus, w.vds_nc, 1) | number: 1}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  <div class="row" style="margin-top:50px;">
+    <div class="col-lg-12" style="padding-left:4%;">
+      <h1 style="margin-left: 0px;border-bottom: 4px solid gray;">Altri Veicoli paganti</h1>
+      <table class="table table-bordered"> 
+        <thead> 
+          <tr> 
+            <th></th> 
+            <th style="max-width: 150px;text-align: center;">Veicoli commerciali, bus e veicoli speciali</th>
+            <th style="text-align: center;">%</th> 
+            <th style="max-width: 150px;text-align: center;">Autovetture trasporto persone</th>
+            <th style="text-align: center;">%</th> 
+          </tr>          
+        </thead> 
+        <tbody> 
+          <tr ng-repeat="w in web_3MacroclassiAnnoPromise|orderBy:'-anno'">
+            <th scope="row"  style="max-width: 150px;text-align: center;">{{w.anno}}</th>
+            <td style="max-width: 150px;text-align: center;">{{spalmaNC(w.altripaganti_persone, w.altripaganti_merci, w.altripaganti_bus, w.altripaganti_nc, 2) | number: 0}}</td>
+            <td style="text-align: center;">{{spalmaNCperc(w.altripaganti_persone, w.altripaganti_merci, w.altripaganti_bus, w.altripaganti_nc, 2) | number: 1}}</td>
+            <td style="max-width: 150px;text-align: center;">{{spalmaNC(w.altripaganti_persone, w.altripaganti_merci, w.altripaganti_bus, w.altripaganti_nc, 1) | number: 0}}</td>
+            <td style="text-align: center;">{{spalmaNCperc(w.altripaganti_persone, w.altripaganti_merci, w.altripaganti_bus, w.altripaganti_nc, 1) | number: 1}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+
+    <div class="row" style="margin-top:120px;">
+      <div class="col-lg-12" >
+        <nvd3 options="dataSetGraph_7.opzioni" data="dataSetGraph_7.dati"></nvd3>
+        <h5 class="text-center" style="margin-top:-50px;">Tab 0.7 - Confronto annuale della ripartizione percentuale</h5> 
+      </div>
+    </div>
+    <div class="row" style="margin-top:120px;">      
+      <div class="col-lg-12" >
+        <nvd3 options="dataSetGraph_8.opzioni" data="dataSetGraph_8.dati"></nvd3>
+        <h5 class="text-center" style="margin-top:-50px;">Tab 0.8 - Confronto mensile  della ripartizione percentuale durante il {{web_3MacroclassiLastPromise[0].anno}}</h5> 
+      </div>
+    </div>
+  <hr style="margin-bottom:50px;margin-top:20px;">
+
+</div>
+
+
+
+<div id = "orario" class="col-lg-12 col-md-12  col-sm-12 col-xs-12"  style="background: rgba(255,255,255,1);margin-bottom: 25px;padding-top: 30px;padding-bottom: 30px;border-left: solid 5px blue;min-height: 900px;">
+  <div class="row" >
+    <div  class="col-lg-3" style="background-color: blue;min-height: 55px;padding-top:15px;margin-left:-20px;">
+    <h4  class="text-center" style="font-family: 'Orbitron', sans-serif;">3 - Andamento Orario</h4>
+    </div>
+
+    <div class="col-lg-9">
+    <ul class="list-group">
+      <li class="list-group-item">Andmaento degli ingressi. variaizone rispetto al 2011 Ecopass</li>
+      <li class="list-group-item">Variaizone rispetto alla media dell'anno precedente</li>
+      <li class="list-group-item">Morbi leo risus</li>
+      <li class="list-group-item">Porta ac consectetur ac</li>
+      <li class="list-group-item">Vestibulum at eros</li>
+    </ul>
+    </div>
+  </div>
+</div>
+
+
+<div id = "freq" class="col-lg-12 col-md-12  col-sm-12 col-xs-12"  style="background: rgba(255,255,255,1);margin-bottom: 25px;padding-top: 30px;padding-bottom: 30px;border-left: solid 5px orange;min-height: 900px;">
+  <div class="row" >
+    <div  class="col-lg-3" style="background-color: orange;min-height: 55px;padding-top:15px;margin-left:-20px;">
+    <h4  class="text-center" style="font-family: 'Orbitron', sans-serif;">4 - Frequenze di accesso</h4>
+    </div>
+
+    <div class="col-lg-9">
+    <ul class="list-group">
+      <li class="list-group-item">Andmaento degli ingressi. variaizone rispetto al 2011 Ecopass</li>
+      <li class="list-group-item">Variaizone rispetto alla media dell'anno precedente</li>
+      <li class="list-group-item">Morbi leo risus</li>
+      <li class="list-group-item">Porta ac consectetur ac</li>
+      <li class="list-group-item">Vestibulum at eros</li>
+    </ul>
+    </div>
+  </div>
+</div>
+
+
+</div>

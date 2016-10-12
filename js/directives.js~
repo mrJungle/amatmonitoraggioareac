@@ -1,0 +1,261 @@
+angular.module("hcfMilano")
+.directive('appNavbar', [function () {
+    return {
+        restrict: 'A',
+        templateUrl : 'templates/navbar.html',
+        replace : true,
+        link: function (scope, iElement, iAttrs) {
+            
+        }
+    };
+}])
+
+.directive('appFooter', [function () {
+    return {
+        restrict: 'A',
+        templateUrl : 'templates/footer.html',
+        replace : true,
+        link: function (scope, iElement, iAttrs) {
+            //scope.$watch('news', function(n){
+//iElement è il .owl-carousel
+  //          })
+            
+        }
+    };
+}])
+
+.directive('appCarousel', [function () {
+    return {
+        restrict: 'A',
+        templateUrl : 'templates/carousel.html',
+        //replace : true,
+        scope: {news:'='},
+        link: function (scope, iElement, iAttrs) {
+            //console.log(scope.news);
+            scope.$watch('news', function(n){
+                if(n){
+              //console.log('ciaoDirective')
+              //console.log('news')
+//iElement è il .owl-carousel
+    var content = "";
+    angular.forEach(n, function(i){
+        //console.log(i)
+        if (i.immagine_small && i.promozione=='2'){
+            content +=  '<div  class="item row">'
+            content +=  '<div class="col-lg-5 col-md-5  col-sm-5">'            
+            content +=  '<h1 class="text-center" style="font-family:\'bebasneue\';color: #fff;letter-spacing: 5px;">'+i.titolo+'</h1> '
+            content +=  '<h4 class="text-center">'+i.sottotitolo+'</h4> '
+            content +=  '</div><div class="col-lg-7 col-md-7 col-sm-7 immmagine_carosello_home">  '
+            content +=  '<img src="'+i.immagine_carousel.url+'" class="img img-responsive">'        
+            content +=  '</div></div>'
+        
+        }   
+    })
+    //console.log(content)
+    var carosello = $(".owl-carousel", $(iElement));
+    carosello.html(content);    
+    carosello.owlCarousel({
+    center:true,
+    loop:true,
+    autoplay:true,
+    autoplayTimeout:13000,
+    autoplayHoverPause:false,
+    margin:10,
+    nav:true,
+    navText:false,
+    navClass:false,
+    responsive:{
+        0:{
+            items:1
+        },
+        768:{
+            items:1
+        },
+        1000:{
+            items:1
+        }
+    },
+})
+                }
+
+
+
+           })
+            
+        }
+    };
+}])
+
+.directive('appCarouselalerts', [function () {
+    return {
+        restrict: 'A',
+        templateUrl : 'templates/carousel.html',
+        scope: {alerts:'='},
+        link: function (scope, iElement, iAttrs) {
+            scope.$watch('alerts', function(n){
+                if(n){
+    var content = "";
+    angular.forEach(n, function(i){
+        if (i.descr){
+            content +=  '<div class="col-lg-12 col-md-12  col-sm-12 col-xs-12" style="border:dotted #A70000 5px;">'            
+            content +=  '<h4 class="text-center" style="color:#fff">"'+i.descr+'"</h4> '
+            content +=  '</div>'
+        }   
+    })
+    var carosello = $(".owl-carousel", $(iElement));
+    carosello.html(content);    
+    carosello.owlCarousel({
+    animateOut: 'fadeOutDown',
+    animateIn: 'flipInX',
+    items:1,
+    margin:30,
+    stagePadding:30,
+    smartSpeed:450,
+    center:true,
+    loop:true,
+    autoplay:true,
+    autoplayTimeout:10000,
+    autoplayHoverPause:true,
+    margin:30,
+    nav:true,
+    navText:false,
+    navClass:false,
+})
+                }
+
+
+
+           })
+            
+        }
+    };
+}])
+
+.directive('appCarouselgallery', [function () {
+    return {
+        restrict: 'A',
+        templateUrl : 'templates/carousel.html',
+        //replace : true,
+        scope: {galleryimg:'='},
+        link: function (scope, iElement, iAttrs) {
+            //console.log(scope.news);
+            scope.$watch('galleryimg', function(n){
+                if(n){
+              //console.log('ciaoDirective')
+              //console.log('news')
+//iElement è il .owl-carousel
+    var content = "";
+    angular.forEach(n, function(i){
+        if (i.immagine_carousel){
+
+            content +=  '<div  class="item row">'
+            content +=  '<div class="col-lg-12 col-md-12 col-sm-12 bloccoimg">  '
+            content +=  '<img src="'+i.immagine_carousel.url+'" class="img img-responsive" style="border:dotted 5px #333;">'        
+            content +=  '</div></div>'
+        }   
+    })
+    //console.log(content)
+    var carosello = $(".owl-carousel", $(iElement));
+    carosello.html(content);    
+    carosello.owlCarousel({
+    center:true,
+    loop:true,
+    autoplay:true,
+    autoplayTimeout:6000,
+    autoplayHoverPause:false,
+    margin:10,
+    nav:true,
+    navText:false,
+    navClass:false,
+    responsive:{
+        0:{
+            items:2
+        },
+        700:{
+            items:3
+        },
+        1000:{
+            items:3
+        }
+    },
+})
+                }
+
+
+
+           })
+            
+        }
+    };
+}])
+
+.directive('appCarouselgallerie', [function () {
+    return {
+        restrict: 'A',
+        templateUrl : 'templates/carousel.html',
+        //replace : true,
+        scope: {galleryimg:'='},
+        link: function (scope, iElement, iAttrs) {
+            //console.log(scope.news);
+            scope.$watch('galleryimg', function(n){
+                if(n){
+              //console.log('ciaoDirective')
+              //console.log('news')
+//iElement è il .owl-carousel
+    var content = "";
+    angular.forEach(n, function(i){
+        if (i.immagine_carousel){
+
+            content +=  '<div  class="item row">'
+            content +=  '<div class="col-lg-12 col-md-12 col-sm-12 bloccoimg">  '
+            content +=  '<img src="'+i.immagine_carousel.url+'" class="img img-responsive" style="border:dotted 5px #333;">'        
+            content +=  '</div></div>'
+        }   
+    })
+    //console.log(content)
+    var carosello = $(".owl-carousel", $(iElement));
+    carosello.html(content);    
+    carosello.owlCarousel({
+    center:true,
+    loop:true,
+    autoplay:true,
+    autoplayTimeout:6000,
+    autoplayHoverPause:false,
+    margin:10,
+    nav:true,
+    navText:false,
+    navClass:false,
+    responsive:{
+        0:{
+            items:1
+        },
+        700:{
+            items:1
+        },
+        1000:{
+            items:1
+        }
+    },
+})
+                }
+
+
+
+           })
+            
+        }
+    };
+}])
+
+
+
+
+
+
+
+
+;
+
+
+
+

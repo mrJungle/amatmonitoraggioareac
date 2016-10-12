@@ -1,0 +1,682 @@
+angular.module("hcfMilano")
+  .controller('AppCtrl', function ($scope, $rootScope, Restangular, $state, $document, Stream, Base) {
+
+    $rootScope.isCollapsed = true;
+
+    //$rootScope.navVisibile = true; 
+
+    $rootScope.navVisibile = function(){
+      var visteSenzaNav = ['app.corsitype', 'app.trainer', 'app.gallery', 'app.guestpassform', 'app.news', 'app.press']
+      if (visteSenzaNav.indexOf($state.current.name)<0) {return true}
+      return false
+    };
+
+    console.log('avvio AppCtrl');
+
+    $scope.sonoin = function(x){
+        if ($state.current.name==x) {return true}
+    }
+
+/// scroll Function /////////////////////////////////////////////////////
+    $scope.gotoToElement = function(elementId) {
+      var offset = -500;
+      var someElement = angular.element(document.getElementById(elementId));
+      $document.scrollToElement(someElement, offset, 500);
+    }
+
+    $scope.gotoTop = function() {
+      $document.scrollTo(0, 0 ,500)      
+    };
+/////////////////////////////////////////////////////////////////////////////
+
+    $rootScope.bottoneToTop = false;
+
+$document.on('scroll', function() {
+      //console.log('Document scrolled to ', $document.scrollLeft(), $document.scrollTop());
+      //console.log($scope.bottoneToTop)
+      if ($document.scrollTop() >= 600 && ($rootScope.bottoneToTop==false)) {
+        $rootScope.bottoneToTop = !$rootScope.bottoneToTop
+        //console.log($scope.bottoneToTop)
+       $('.scrollToTop_d').fadeIn();
+       //$('.navbar').addClass('navbar-shrink');
+ }
+      if ($document.scrollTop() < 600 && ($rootScope.bottoneToTop==true)) {
+          $('.scrollToTop_d').fadeOut();
+          //$('.navbar').removeClass('navbar-shrink');
+          $rootScope.bottoneToTop = !$rootScope.bottoneToTop
+          }
+    
+  });
+
+
+
+// TODO - agganciare ai dati dal server
+  $scope.clubs = [
+    'bronzino',
+    'Repubblica'
+  ];
+
+  $scope.status = {
+    isopen: false
+  };
+
+  $scope.toggleDropdown = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+    $scope.status.isopen = !$scope.status.isopen;
+  };
+
+////////////////////////////////////////////////////
+
+
+  })
+ 
+  .controller('HomeCtrl', function ($scope, $sce,  $timeout, $document, Stream, Restangular, Base, PalestreStatiche, Partner, $stateParams, ngProgressFactory) {
+
+    $scope.progressbar = ngProgressFactory.createInstance();
+    $scope.progressbar.start();
+
+    $scope.gotoTop();
+    
+    $scope.palestrestatiche=PalestreStatiche;
+    $scope.galleryimg=Partner;
+
+    var a = ['events', 'news', 'alerts', 'palestre', 'videos'];
+    Base.getStreamDati(a)
+      .then(function(s){
+      $scope.events = s.events;
+      $scope.news = s.news;
+      $scope.alerts = s.alerts;
+      $scope.palestrepromesse = s.palestre;
+      var videos = []
+      angular.forEach(s.videos, function(value, key){
+          if (value.promozione == 2) {
+            value.url=$sce.trustAsResourceUrl(value.url.replace('https://youtu.be/', 'http://www.youtube.com/embed/'));
+            videos.push(value)
+            }
+        });
+      $scope.videos = videos[0];
+      ///////
+      $timeout($scope.progressbar.complete(), 1000);
+      window.prerenderReady = true;
+      console.log(window.prerenderReady);
+      //////////
+    });
+
+
+
+
+
+
+
+
+
+  })
+
+
+  .controller('RepubblicaCtrl', function ($scope, $document, Stream, Restangular, Base, $timeout, ngProgressFactory) {
+    $scope.progressbar = ngProgressFactory.createInstance();
+    $scope.progressbar.start();    
+
+    $scope.gotoTop();
+
+
+    var a = ['news', 'alerts', 'gallery'];
+    Base.getStreamDati(a)
+      .then(function(s){
+      var news = [];  
+      angular.forEach(s.news, function(value, key){
+          if (_.contains(value.palestre, 'HCF Repubblica')) {news.push(value)}
+          });
+      $scope.news = news;
+      /////////////////
+      var alerts = [];  
+      angular.forEach(s.alerts, function(value, key){
+          if (_.contains(value.palestre, 'HCF Repubblica')) {alerts.push(value)}
+          });
+      $scope.alerts = alerts;
+      ////////////
+      var galleryId = null;  
+      angular.forEach(s.gallery, function(value, key){
+          if (value.titolo=='HCF Repubblica') {galleryId = value.id}
+          });
+      Base.getDatiGalleryImgDetail('galleryimg', galleryId)
+          .then(function(img){
+          $scope.galleryimg = img;
+      })
+      ///////
+      $timeout($scope.progressbar.complete(), 1000);
+      //////////
+    });
+
+
+  })
+
+
+  .controller('BronzinoCtrl', function ($scope, $document, Stream, Restangular, Base, $timeout, ngProgressFactory) {
+    $scope.progressbar = ngProgressFactory.createInstance();
+    $scope.progressbar.start();    
+   
+    $scope.gotoTop();
+
+    var a = ['news', 'alerts', 'gallery'];
+    Base.getStreamDati(a)
+      .then(function(s){
+      //console.log(s);
+      var news = [];  
+      angular.forEach(s.news, function(value, key){
+          if (_.contains(value.palestre, 'HCF Citt\u00E0 Studi')) {news.push(value)}
+          });
+      $scope.news = news;
+      //console.log($scope.news);
+      /////////////////
+      var alerts = [];  
+      angular.forEach(s.alerts, function(value, key){
+          if (_.contains(value.palestre, 'HCF Citt\u00E0 Studi')) {alerts.push(value)}
+          });
+      $scope.alerts = alerts;
+      //console.log($scope.alerts);
+      ////////////
+      var galleryId = null;  
+      angular.forEach(s.gallery, function(value, key){
+          if (value.titolo=='HCF Citt\u00E0 Studi') {galleryId = value.id}
+          });
+      Base.getDatiGalleryImgDetail('galleryimg', galleryId)
+          .then(function(img){
+          $scope.galleryimg = img;
+      })
+      ///////
+      $timeout($scope.progressbar.complete(), 1000);
+      //////////
+    });
+
+  })
+
+  .controller('CorsiCtrl', function ($scope, $document, Stream, Restangular, Base, CorsiStatici, $timeout, ngProgressFactory) {
+    $scope.progressbar = ngProgressFactory.createInstance();
+    $scope.progressbar.start();    
+
+    $scope.gotoTop();
+
+    $scope.corsiStatici = CorsiStatici.CorsiStatici;
+
+    $timeout($scope.progressbar.complete(), 1000);
+  })
+
+  .controller('CorsiTypeCtrl', function ($scope, $document, Stream, Restangular, Base, CorsiStatici, $stateParams, $timeout, ngProgressFactory) {
+    $scope.progressbar = ngProgressFactory.createInstance();
+    $scope.progressbar.start();    
+
+    $scope.gotoTop();
+
+    $scope.tipologiaCorsoId = $stateParams.tipologiaCorsoId;
+
+    if ($stateParams.tipologiaCorsoId==0){
+          Base.getDati('corsi')
+            .then(function(s){
+              $scope.listaCorsiStatici = s;
+            })
+    } 
+
+    else { $scope.listaCorsiStatici = (CorsiStatici.CorsoStatico($stateParams.tipologiaCorsoId)[0].corsi);  
+
+    }
+
+    $timeout($scope.progressbar.complete(), 1000);
+
+  })  
+
+  .controller('ServiziCtrl', function ($scope, $document, Stream, Restangular, Base, $stateParams, $timeout, ngProgressFactory) {
+    $scope.progressbar = ngProgressFactory.createInstance();
+    $scope.progressbar.start();
+
+    $scope.gotoTop();
+    
+    $scope.someElement = angular.element(document.getElementById($stateParams.servizioId));    
+    if ($stateParams.servizioId=='personaltrainer'){
+      $document.scrollToElement($scope.someElement, 550, 500);
+    }
+    if ($stateParams.servizioId=='hcflab'){
+      
+      $document.scrollToElement($scope.someElement, 120, 500);
+    }
+    if ($stateParams.servizioId=='zonabenessere'){
+      $document.scrollToElement($scope.someElement, 50, 500);
+    }
+    if ($stateParams.servizioId=='hcfbeauty'){
+      $document.scrollToElement($scope.someElement, 0, 500);
+    }
+    if ($stateParams.servizioId=='djset'){
+      $document.scrollToElement($scope.someElement, -200, 500);
+    }    
+    if ($stateParams.servizioId=='hcfcafe'){
+      $document.scrollToElement($scope.someElement, -350, 500);     
+    }
+
+    $timeout($scope.progressbar.complete(), 1000);
+
+  })
+
+
+  .controller('NovitaCtrl', function ($scope, $sce, $rootScope, $document, Stream, Restangular, Base, $stateParams, $timeout, ngProgressFactory) {
+    $scope.progressbar = ngProgressFactory.createInstance();
+    $scope.progressbar.start();
+
+    //console.log($stateParams.novitaId) ;
+    $scope.newsvisibili = true;
+
+
+    var a = ['news', 'press','videos', 'gallery'];
+    Base.getStreamDati(a)
+      .then(function(s){
+        $scope.news = s.news
+        if (s.news.length > 3){
+        s.news.length = 3;
+        ///console.log(s.news.length);
+        }
+        if (s.news.length == 0){
+          //console.log(s.news.length);
+          $scope.newsvisibili = false
+        }
+        $scope.news = _.sortBy(s.news, 'ord').reverse();  
+        /////////////////
+        var press = [];  
+        angular.forEach(s.press, function(value, key){
+            if (value.titolo=='Press Kit') { $scope.pressKit = value; }
+            if (value.titolo!='Press Kit') { press.push(value); }
+            });
+        $scope.press = _.sortBy(press, 'ord').reverse(); 
+        //console.log($scope.press);
+        ////////////
+        var videos = []
+        angular.forEach(s.videos, function(value, key){
+            value.url=$sce.trustAsResourceUrl(value.url.replace('https://youtu.be/', 'http://www.youtube.com/embed/'));
+            videos.push(value)
+          });
+        $scope.videos = _.sortBy(videos, 'ord').reverse(); 
+        ////////////////
+        $scope.gallery = _.sortBy(s.gallery, 'ord').reverse(); 
+
+        ///////
+        $timeout($scope.progressbar.complete(), 1000);
+        //////////
+      if ($stateParams.novitaId){
+          if ($stateParams.novitaId=='news'){
+            $scope.gotoTop();    
+          }
+          else {
+            $scope.gotoToElement($stateParams.novitaId);
+          }
+      }
+      });
+
+
+
+  })
+
+  .controller('TrainerCtrl', function ($scope, $document, Stream, Restangular, Base, $timeout, ngProgressFactory) {
+    $scope.progressbar = ngProgressFactory.createInstance();
+    $scope.progressbar.start();
+
+    Base.getDati('istruttori')
+      .then(function(s){
+    $scope.trainers = s;
+    $timeout($scope.progressbar.complete(), 1000);
+    })
+
+
+  })
+
+  .controller('GalleryCtrl', function ($scope, $document, Stream, Restangular, Base, $stateParams, $timeout, ngProgressFactory) {
+    $scope.progressbar = ngProgressFactory.createInstance();
+    $scope.progressbar.start();
+// state go se il params è nullo
+// http://localhost:8000/v1/api/galleryimg/?gpk=37
+
+    Base.getDatiGalleryImgDetail('galleryimg', $stateParams.galleryId)
+      .then(function(s){
+    $scope.galleryimg = s;
+    $timeout($scope.progressbar.complete(), 1000);
+    })
+
+
+  })
+
+  .controller('AbbonamentiCtrl', function ($scope, $document, Stream, Restangular, Base, $stateParams, Abbonamenti, $timeout, ngProgressFactory) {
+    $scope.progressbar = ngProgressFactory.createInstance();
+    $scope.progressbar.start();
+    $scope.gotoTop();
+
+    $scope.abbonamenti = Abbonamenti;
+    if ($stateParams.abbonamentiId=='perte'){
+            $scope.gotoTop();    
+          }
+    else{
+      $scope.gotoToElement($stateParams.abbonamentiId);  
+    }
+    
+    
+    $timeout($scope.progressbar.complete(), 1000);
+//    $timeout($document.scrollToElement(someElement, 0, 500), 1000);
+  
+  })
+
+  .controller('GuestpassCtrl', function ($scope, Guestpass, $document, Stream, Restangular, Base, $stateParams, $rootScope, $timeout, ngProgressFactory) {
+    $scope.progressbar = ngProgressFactory.createInstance();
+    $scope.progressbar.start();
+
+    $scope.gotoTop();
+    //console.log($stateParams.abbonamentiId);
+
+    $scope.userData = {
+            'nome':$scope.nome, 
+            'cognome':$scope.cognome,
+            'mail':$scope.mail,
+            'palestra': [],
+          };
+
+  Base.getDati('palestre')
+      .then(function(s){
+        angular.forEach(s, function(value, key){
+          if (localStorage.getItem('guestpass'+value.id)){
+            //console.log('guestpass'+value.id)
+            var a = {nome:value.titolo, 
+                    id:value.id, 
+                    pass:JSON.parse(localStorage.getItem('guestpass'+value.id)).guestpass, 
+                    usato:JSON.parse(localStorage.getItem('guestpass'+value.id)).used, 
+                    richiesto:false
+                                         };
+            //console.log(a);
+            $scope.userData.palestra.push(a);
+          }
+          else{
+            $scope.userData.palestra.push({nome:value.titolo, id:value.id, pass:null, usato:null, richiesto:false}) 
+          }
+        })
+      $timeout($scope.progressbar.complete(), 1000);
+    });
+  })
+
+
+  .controller('GuestpassformCtrl', function ($scope, Guestpass, $document, Stream, Restangular, Base, $stateParams, $rootScope, $timeout, ngProgressFactory) {
+    $scope.progressbar = ngProgressFactory.createInstance();
+    $scope.progressbar.start();
+
+    $scope.gotoTop();
+
+    $scope.ui = {
+      error : null
+    };
+
+  $scope.visibile = false;
+  $scope.okvisibile = false;
+
+  $scope.controllaCampi = function(userData){
+      if ($scope.nome === undefined) {
+        $scope.ui.error='Inserisci il tuo nome';
+        return false;      
+      }      
+      console.log($scope.nome);
+      if ($scope.cognome  === undefined ) { 
+        $scope.ui.error='Inserisci il tuo cognome';
+        return false;      
+      }    
+      if ($scope.mail === undefined ) { 
+        $scope.ui.error='Per inviarti il Guess Pass abbiamo bisogno di una mail';
+        return false;      
+      }      
+      if (angular.forEach(userData.palestra, function(value, key){
+        //console.log(value.richiesto);
+        if (value.richiesto) {return true}
+      })  ) {return true}    
+      $scope.ui.error = 'Seleziona almeno uno dei club di HCF Milano'; 
+      return false
+      }
+
+  $scope.userData = {
+          'nome':$scope.nome, 
+          'cognome':$scope.cognome,
+          'mail':$scope.mail,
+          'palestra': [],
+        };
+
+  Base.getDati('palestre')
+      .then(function(s){
+        angular.forEach(s, function(value, key){
+          if (localStorage.getItem('guestpass'+value.id)){
+            console.log('guestpass'+value.id)
+            var a = {nome:value.titolo, 
+                    id:value.id, 
+                    pass:JSON.parse(localStorage.getItem('guestpass'+value.id)).guestpass, 
+                    usato:JSON.parse(localStorage.getItem('guestpass'+value.id)).used, 
+                    richiesto:false
+                                         };
+            //console.log(a);
+            $scope.userData.palestra.push(a);
+          }
+          else{
+            $scope.userData.palestra.push({nome:value.titolo, id:value.id, pass:null, usato:null, richiesto:true}) 
+          }
+        })
+      $timeout($scope.progressbar.complete(), 1000);
+    });
+
+  $scope.askGuestPass = function(){
+    if ($scope.controllaCampi($scope.userData)) {
+      $scope.visibile = false;
+    angular.forEach($scope.userData.palestra, function(value, key){
+      if (value.richiesto) {
+        Restangular.all('guestpass')
+              .post({nome:$scope.nome, 
+                      cognome:$scope.cognome,
+                      mail:$scope.mail,
+                      palestra:value.id})
+              .then(function(resp){
+                //console.log(resp)
+                //non salvo in locale perchè non accora settato login
+               //Guestpass.saveGuestPassclub(resp, resp.palestra);
+               $scope.okvisibile = true;
+              })
+              .catch(function(err){
+                if (err.status==0){err.data.detail='connettività mancante'}
+                $scope.ui.error = err.data.detail;
+                $scope.visibile = true;
+              })
+        }
+      });
+    }
+    else {
+      $scope.visibile = true;
+    }    
+  
+
+  }
+
+
+  })
+
+
+  .controller('ContattaciCtrl', function ($scope, $state, $interval, $modal,$rootScope, Guestpass, $document, Stream, Restangular, Base, $stateParams, $rootScope, $timeout, ngProgressFactory) {
+    $scope.progressbar = ngProgressFactory.createInstance();
+    $scope.progressbar.start();
+
+    $scope.gotoTop();
+
+    $scope.comunicazioneinoltrata = false;
+    $scope.visibile = false;    
+    $scope.regolamentoclub = true;
+    $scope.informativaprivacy = true;
+
+    $scope.ui = {
+      error : null
+    };
+
+    $scope.palestre = [];
+    Base.getDati('palestre')
+      .then(function(s){    
+        angular.forEach(s, function(value, key){
+          value.richiesto = true;
+          $scope.palestre.push(value);
+          })
+        $timeout($scope.progressbar.complete(), 1000);
+    })
+
+   
+  $scope.ask = function(){
+    var controllo = function(){
+      if (!$scope.regolamentoclub) {
+        $scope.ui.error = 'Per procedere deve accettare il Regolamento';
+        $scope.visibile = true;
+        return false
+         }
+      if (!$scope.informativaprivacy){
+        $scope.ui.error = 'Per procedere deve accettare l\'informativa sulla privacy';
+        $scope.visibile = true;
+        return false
+        }
+    return true
+    }
+
+      if (controllo()) {
+        angular.forEach($scope.palestre, function(value, key){
+          if (value.richiesto==true) {
+          Restangular.all('contactform')
+                .post({nome:$scope.nome, 
+                        cognome:$scope.cognome,
+                        mail:$scope.mail,
+                        telefono:$scope.telefono,
+                        palestra:value.id,
+                        richiesta:$scope.richiesta,
+                        tiporichiesta:$scope.tiporichiesta
+                        })
+                .then(function(resp){
+                 //console.log(resp);
+                 $scope.visibile = false;
+                 $scope.comunicazioneinoltrata = true;
+                 //$interval(function(){$scope.comunicazioneinoltrata = true;}, 5000, 2);
+                 //$state.go('app.home');
+                })
+                .catch(function(err){
+                  if (err.status==0){err.data.detail='connettività mancante'}
+                  $scope.ui.error = err.data.detail;
+                  $scope.visibile = true;
+                })
+              }
+            })
+          }
+      }
+
+  $scope.animationsEnabled = true;
+
+  $scope.open = function (size, doc) {
+    var modalInstance = $modal.open({
+      animation: $scope.animationsEnabled,
+      templateUrl: 'templates/privacy.html',
+      controller: 'ModalprivacyCtrl',
+      size: size,
+    });
+   
+  };
+
+  $scope.toggleAnimation = function () {
+    $scope.animationsEnabled = !$scope.animationsEnabled;
+  };
+
+})
+  .controller('ModalprivacyCtrl', function ($scope, $modal, $modalInstance) {
+  
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+  
+  })
+
+  .controller('OrarilezioniCtrl', function ($scope, $state, $rootScope, Guestpass, $document, Stream, Restangular, Base, $stateParams, $rootScope, ngProgressFactory, $timeout) {
+    $scope.progressbar = ngProgressFactory.createInstance();
+    $scope.progressbar.start();
+
+    $scope.gotoTop();
+    $scope.selezionepalestra = '';
+    $scope.selezione = {};
+
+    var a = ['palestre', 'orariopdf', 'lezioni/calendario'];
+    Base.getStreamDati(a)
+      .then(function(s){
+
+      $scope.palestre = s.palestre;
+      $scope.selezionepalestra = $scope.palestre[0].titolo
+      //console.log($scope.palestre[0].titolo)
+      //console.log($scope.palestre);
+      $scope.orariopdf = s.orariopdf;
+      //console.log($scope.orariopdf)
+      //console.log('test')
+      /////////////////
+      $scope.lezioni = s['lezioni/calendario'];
+      $scope.lezioni = _.sortBy($scope.lezioni, 'stamp');
+      //console.log($scope.lezioni)
+      $scope.giornilezioni = _.uniq(_.pluck($scope.lezioni, 'data'));            
+      $scope.selezione.dataselezionata = $scope.giornilezioni[0]
+      ///////
+      $timeout($scope.progressbar.complete(), 1000);
+      //////////
+    });
+
+ $scope.filtraLezioni = function(s){
+    return function(l){      
+    return ( (l.sala == s) && (l.data == $scope.selezione.dataselezionata)
+    );
+ }
+  }
+
+  $scope.CambiaSelezione = function(p) {
+  $scope.selezionepalestra = p;
+  }
+
+ $scope.filtraOrarioPdf = function(p){
+    return function(o){      
+      if (_.contains(o.palestre, p)) {return true}
+    //return ( (o.palestre == s) && (0.data == $scope.selezione.dataselezionata)
+    //);
+ }
+  }
+
+
+})
+  .controller('NewsCtrl', function ($scope, $state, $rootScope, Guestpass, $document, Stream, Restangular, Base, $stateParams, $rootScope, ngProgressFactory, $timeout) {
+    $scope.progressbar = ngProgressFactory.createInstance();
+    $scope.progressbar.start();
+
+    $scope.gotoTop();
+
+    Base.getDati('news')
+      .then(function(s){
+    $scope.news = _.sortBy(s, 'created').reverse();
+    //console.log(s);
+    $timeout($scope.progressbar.complete(), 1000);
+    })
+
+})
+  .controller('PressCtrl', function ($scope, $state, $rootScope, Guestpass, $document, Stream, Restangular, Base, $stateParams, $rootScope, ngProgressFactory, $timeout) {
+    $scope.progressbar = ngProgressFactory.createInstance();
+    $scope.progressbar.start();
+
+    $scope.gotoTop();
+
+    //console.log($stateParams.pressId);
+
+    Base.getDatiDetail('press', $stateParams.pressId)
+        .then(function(resp){
+        $scope.press = resp;
+        $timeout($scope.progressbar.complete(), 1000);
+    })
+
+})
+
+
+
+;
+
+
+
+
+

@@ -1,0 +1,382 @@
+{
+    "dati": [
+        {
+            "transiti": "3907", 
+            "id_varco": "57", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "> 0% e < 10%", 
+            "veicoli": "3549", 
+            "transiti_corretti": "37", 
+            "percentuale": "1"
+        }, 
+        {
+            "transiti": "5625", 
+            "id_varco": "58", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "nessuna correzione", 
+            "veicoli": "5155", 
+            "transiti_corretti": "0", 
+            "percentuale": "0"
+        }, 
+        {
+            "transiti": "830", 
+            "id_varco": "59", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "nessuna correzione", 
+            "veicoli": "633", 
+            "transiti_corretti": "0", 
+            "percentuale": "0"
+        }, 
+        {
+            "transiti": "3781", 
+            "id_varco": "60", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "nessuna correzione", 
+            "veicoli": "3327", 
+            "transiti_corretti": "0", 
+            "percentuale": "0"
+        }, 
+        {
+            "transiti": "589", 
+            "id_varco": "61", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "nessuna correzione", 
+            "veicoli": "527", 
+            "transiti_corretti": "0", 
+            "percentuale": "0"
+        }, 
+        {
+            "transiti": "186", 
+            "id_varco": "62", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "> 0% e < 10%", 
+            "veicoli": "168", 
+            "transiti_corretti": "2", 
+            "percentuale": "1"
+        }, 
+        {
+            "transiti": "2132", 
+            "id_varco": "63", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "nessuna correzione", 
+            "veicoli": "1930", 
+            "transiti_corretti": "0", 
+            "percentuale": "0"
+        }, 
+        {
+            "transiti": "10550", 
+            "id_varco": "64", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "nessuna correzione", 
+            "veicoli": "8215", 
+            "transiti_corretti": "0", 
+            "percentuale": "0"
+        }, 
+        {
+            "transiti": "8139", 
+            "id_varco": "65", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "> 0% e < 10%", 
+            "veicoli": "7549", 
+            "transiti_corretti": "59", 
+            "percentuale": "1"
+        }, 
+        {
+            "transiti": "294", 
+            "id_varco": "66", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "nessuna correzione", 
+            "veicoli": "251", 
+            "transiti_corretti": "0", 
+            "percentuale": "0"
+        }, 
+        {
+            "transiti": "2467", 
+            "id_varco": "67", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "nessuna correzione", 
+            "veicoli": "2211", 
+            "transiti_corretti": "0", 
+            "percentuale": "0"
+        }, 
+        {
+            "transiti": "442", 
+            "id_varco": "68", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "nessuna correzione", 
+            "veicoli": "399", 
+            "transiti_corretti": "0", 
+            "percentuale": "0"
+        }, 
+        {
+            "transiti": "4435", 
+            "id_varco": "69", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "> 0% e < 10%", 
+            "veicoli": "3856", 
+            "transiti_corretti": "146", 
+            "percentuale": "3"
+        }, 
+        {
+            "transiti": "1765", 
+            "id_varco": "70", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "> 0% e < 10%", 
+            "veicoli": "1583", 
+            "transiti_corretti": "28", 
+            "percentuale": "2"
+        }, 
+        {
+            "transiti": "6801", 
+            "id_varco": "71", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "> 0% e < 10%", 
+            "veicoli": "6045", 
+            "transiti_corretti": "77", 
+            "percentuale": "1"
+        }, 
+        {
+            "transiti": "4514", 
+            "id_varco": "72", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "> 0% e < 10%", 
+            "veicoli": "4035", 
+            "transiti_corretti": "37", 
+            "percentuale": "1"
+        }, 
+        {
+            "transiti": "527", 
+            "id_varco": "73", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "> 0% e < 10%", 
+            "veicoli": "453", 
+            "transiti_corretti": "10", 
+            "percentuale": "2"
+        }, 
+        {
+            "transiti": "1644", 
+            "id_varco": "74", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "> 10% e < 50%", 
+            "veicoli": "1326", 
+            "transiti_corretti": "201", 
+            "percentuale": "12"
+        }, 
+        {
+            "transiti": "3757", 
+            "id_varco": "75", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "> 0% e < 10%", 
+            "veicoli": "3442", 
+            "transiti_corretti": "16", 
+            "percentuale": "0"
+        }, 
+        {
+            "transiti": "1145", 
+            "id_varco": "76", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "> 0% e < 10%", 
+            "veicoli": "1037", 
+            "transiti_corretti": "21", 
+            "percentuale": "2"
+        }, 
+        {
+            "transiti": "1163", 
+            "id_varco": "77", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "> 0% e < 10%", 
+            "veicoli": "1072", 
+            "transiti_corretti": "10", 
+            "percentuale": "1"
+        }, 
+        {
+            "transiti": "1582", 
+            "id_varco": "78", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "nessuna correzione", 
+            "veicoli": "1401", 
+            "transiti_corretti": "0", 
+            "percentuale": "0"
+        }, 
+        {
+            "transiti": "299", 
+            "id_varco": "79", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "> 0% e < 10%", 
+            "veicoli": "252", 
+            "transiti_corretti": "11", 
+            "percentuale": "4"
+        }, 
+        {
+            "transiti": "1803", 
+            "id_varco": "80", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "nessuna correzione", 
+            "veicoli": "1650", 
+            "transiti_corretti": "0", 
+            "percentuale": "0"
+        }, 
+        {
+            "transiti": "6379", 
+            "id_varco": "81", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "nessuna correzione", 
+            "veicoli": "5857", 
+            "transiti_corretti": "0", 
+            "percentuale": "0"
+        }, 
+        {
+            "transiti": "720", 
+            "id_varco": "82", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "> 0% e < 10%", 
+            "veicoli": "625", 
+            "transiti_corretti": "21", 
+            "percentuale": "3"
+        }, 
+        {
+            "transiti": "1665", 
+            "id_varco": "83", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "nessuna correzione", 
+            "veicoli": "1509", 
+            "transiti_corretti": "0", 
+            "percentuale": "0"
+        }, 
+        {
+            "transiti": "549", 
+            "id_varco": "84", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "nessuna correzione", 
+            "veicoli": "529", 
+            "transiti_corretti": "0", 
+            "percentuale": "0"
+        }, 
+        {
+            "transiti": "4895", 
+            "id_varco": "85", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "> 0% e < 10%", 
+            "veicoli": "4391", 
+            "transiti_corretti": "171", 
+            "percentuale": "3"
+        }, 
+        {
+            "transiti": "3319", 
+            "id_varco": "86", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "> 0% e < 10%", 
+            "veicoli": "2984", 
+            "transiti_corretti": "54", 
+            "percentuale": "2"
+        }, 
+        {
+            "transiti": "1519", 
+            "id_varco": "87", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "> 0% e < 10%", 
+            "veicoli": "1381", 
+            "transiti_corretti": "22", 
+            "percentuale": "1"
+        }, 
+        {
+            "transiti": "803", 
+            "id_varco": "88", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "> 0% e < 10%", 
+            "veicoli": "654", 
+            "transiti_corretti": "76", 
+            "percentuale": "9"
+        }, 
+        {
+            "transiti": "517", 
+            "id_varco": "89", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "> 10% e < 50%", 
+            "veicoli": "260", 
+            "transiti_corretti": "243", 
+            "percentuale": "47"
+        }, 
+        {
+            "transiti": "390", 
+            "id_varco": "90", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "> 10% e < 50%", 
+            "veicoli": "316", 
+            "transiti_corretti": "41", 
+            "percentuale": "11"
+        }, 
+        {
+            "transiti": "3471", 
+            "id_varco": "91", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "> 10% e < 50%", 
+            "veicoli": "2608", 
+            "transiti_corretti": "585", 
+            "percentuale": "17"
+        }, 
+        {
+            "transiti": "2218", 
+            "id_varco": "92", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "nessuna correzione", 
+            "veicoli": "2016", 
+            "transiti_corretti": "0", 
+            "percentuale": "0"
+        }, 
+        {
+            "transiti": "5883", 
+            "id_varco": "93", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "100%", 
+            "veicoli": null, 
+            "transiti_corretti": "5883", 
+            "percentuale": "100"
+        }, 
+        {
+            "transiti": "2604", 
+            "id_varco": "94", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "> 0% e < 10%", 
+            "veicoli": "2438", 
+            "transiti_corretti": "18", 
+            "percentuale": "1"
+        }, 
+        {
+            "transiti": "1396", 
+            "id_varco": "95", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "> 0% e < 10%", 
+            "veicoli": "1311", 
+            "transiti_corretti": "34", 
+            "percentuale": "2"
+        }, 
+        {
+            "transiti": "3246", 
+            "id_varco": "96", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "> 0% e < 10%", 
+            "veicoli": "3003", 
+            "transiti_corretti": "45", 
+            "percentuale": "1"
+        }, 
+        {
+            "transiti": "2800", 
+            "id_varco": "97", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "> 0% e < 10%", 
+            "veicoli": "2496", 
+            "transiti_corretti": "39", 
+            "percentuale": "1"
+        }, 
+        {
+            "transiti": "6011", 
+            "id_varco": "98", 
+            "giorno": "2016-09-09", 
+            "transiti_c": "> 50% e < 90%", 
+            "veicoli": "1672", 
+            "transiti_corretti": "4286", 
+            "percentuale": "71"
+        }
+    ]
+}
