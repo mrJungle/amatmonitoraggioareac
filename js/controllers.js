@@ -51,7 +51,7 @@ angular.module('areacapp')
         var a_res = (a[1].veicoli_residenti/a[0].veicoli*100)-(a[0].veicoli_residenti/a[0].veicoli*100)        
         var a_vds = (a[1].veicoli_vds/a[0].veicoli*100)-(a[0].veicoli_vds/a[0].veicoli*100)                
         var a_pag = (a[1].veicoli_paganti/a[0].veicoli*100)-(a[0].veicoli_paganti/a[0].veicoli*100)                
-        console.log(a_aut, a_eco)
+        //console.log(a_aut, a_eco)
         if(
             (a_aut)<5 && (a_aut)>-5 
             ||
@@ -66,7 +66,7 @@ angular.module('areacapp')
         var a_res = (a[1].transiti_residenti/a[1].transiti_tot_classi*100)-(a[0].transiti_residenti/a[0].transiti_tot_classi*100)        
         var a_vds = (a[1].transiti_vds/a[1].transiti_tot_classi*100)-(a[0].transiti_vds/a[0].transiti_tot_classi*100)                
         var a_pag = (a[1].transiti_paganti/a[1].transiti_tot_classi*100)-(a[0].transiti_paganti/a[0].transiti_tot_classi*100)        
-        console.log(a_aut, a_eco)        
+        //console.log(a_aut, a_eco)        
         if(
             (a_aut)<5 && (a_aut)>-5 
             ||
@@ -78,7 +78,7 @@ angular.module('areacapp')
     $scope.diffTransitiVeicoli = function(a) {
         var a_aut = (a[0].transiti_autorizzati/a[0].transiti_tot_classi*100)-(a[0].veicoli_autorizzati/a[0].veicoli*100)
         var a_pag = (a[0].transiti_paganti/a[0].transiti_tot_classi*100)-(a[0].veicoli_paganti/a[0].veicoli*100)                
-        console.log(a_aut, a_pag)
+        //console.log(a_aut, a_pag)
         if(
             (a_aut)>0 
             &&
@@ -100,6 +100,24 @@ angular.module('areacapp')
     };
 
 
+    $scope.dataSetGraph_9_Choice = [];
+    
+    $scope.setGraph_9 = function(id){
+        //console.log($scope.dataSetGraph_9.dati);
+        //console.log(id)
+        $scope.dataSetGraph_9_Choice =  $scope.dataSetGraph_9.dati[id]
+    }
+
+    $scope.visibile = true;
+
+    $scope.setVisible = function(){
+        $scope.visibile = (!$scope.visibile);
+        setTimeout(() => {
+            $scope.visibile = (!$scope.visibile);
+        }, 0);
+        
+    }
+
     $scope.getDati = function() {
         var deferred = $q.defer();
         var dati = reportService.getReport()
@@ -111,6 +129,7 @@ angular.module('areacapp')
                 $scope.web_3MacroclassiLastPromise = data[0].web_3MacroclassiLastPromise
                 $scope.web_3MacroclassiAnnoPromise = data[0].web_3MacroclassiAnnoPromise
                 $scope.web_3MacroclassiMesePromise = data[0].web_3MacroclassiMesePromise
+                $scope.web_4_OrarioPromise = data[0].web_4AndamentoOrarioStoricoPromise
                 $scope.dataSetGraph_1 = reportService.GraphReport_1($scope.web_0Promise)
                 $scope.dataSetGraph_2 = reportService.GraphReport_2($scope.web_0Promise)
                 $scope.dataSetGraph_3 = reportService.GraphReport_3($scope.web_2settPromise)
@@ -118,7 +137,11 @@ angular.module('areacapp')
                 $scope.dataSetGraph_5 = reportService.GraphReport_5($scope.web_3MacroclassiLastPromise[0])
                 $scope.dataSetGraph_6 = reportService.GraphReport_6($scope.web_3MacroclassiLastPromise[0])
                 $scope.dataSetGraph_7 = reportService.GraphReport_7($scope.web_3MacroclassiAnnoPromise) //transiti
+                /// errore sull'anno. non po essere parametrizzato qua
                 $scope.dataSetGraph_8 = reportService.GraphReport_8(_.filter($scope.web_3MacroclassiMesePromise, function(num) { return num.anno == '2016'}))
+                ///
+                $scope.dataSetGraph_9 = reportService.GraphReport_9($scope.web_4_OrarioPromise) //transiti
+                $scope.setGraph_9(0); 
                 //transiti
                 //$scope.dataSetGraph_4 = reportService.GraphReport_1($scope.web_0Promise)
                 $scope.out_deltaVeicoli = $scope.caricoVeicoli($scope.web_3MacroclassiLastPromise)
@@ -133,6 +156,8 @@ angular.module('areacapp')
     }  
 
     $scope.getDati();
+
+
 
 
 
@@ -353,7 +378,7 @@ angular.module('areacapp')
     modalInstance.result.then(function (selectedItem) {
         //console.log(selectedItem);
         //console.log(new Date(selectedItem));
-        console.log('ciaociaoao')
+        //console.log('ciaociaoao')
         console.log(selectedItem)
       //$scope.selected = selectedItem;
       $scope.cambiaData(selectedItem);

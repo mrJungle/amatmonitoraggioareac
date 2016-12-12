@@ -11,16 +11,18 @@ angular.module("areacapp")
         var web_3MacroclassiLastPromise = $http.get('dati/web_report_3_macroclassi_last.json')
         var web_3MacroclassiAnnoPromise = $http.get('dati/web_report_3_macroclassi_anno.json')
         var web_3MacroclassiMesePromise = $http.get('dati/web_report_3_macroclassi_mese.json')
+        var web_4AndamentoOrarioStoricoPromise = $http.get('dati/web_report_4_andamento_orario_storico.json')
         //var AndamentiVeicoliPromise = $http.get('dati/andamento_veicoli.json')
-        $q.all([web_0Promise, web_2settPromise, web_2mensPromise, web_3MacroclassiLastPromise,  web_3MacroclassiAnnoPromise,  web_3MacroclassiMesePromise])
+        $q.all([web_0Promise, web_2settPromise, web_2mensPromise, web_3MacroclassiLastPromise,  web_3MacroclassiAnnoPromise,  web_3MacroclassiMesePromise, web_4AndamentoOrarioStoricoPromise])
             .then(function(data){
-                console.log(data)
+                //console.log(data)
                 var stream = { 'web_0Promise':data[0].data.dati,
                                'web_2settPromise':data[1].data.dati,
                                'web_2mensPromise':data[2].data.dati,
                                'web_3MacroclassiLastPromise':data[3].data.dati,
                                'web_3MacroclassiAnnoPromise':data[4].data.dati,
                                'web_3MacroclassiMesePromise':data[5].data.dati,
+                               'web_4AndamentoOrarioStoricoPromise':data[6].data.dati,
                           };
                 deferred.resolve(stream);                
             })
@@ -504,7 +506,7 @@ angular.module("areacapp")
     };
     var dati = []
     _.each(_.indexBy(nDataSet, 'anno'), function(val_a){
-        console.log(val_a.anno)
+        //console.log(val_a.anno)
         var d = {
                 originalKey:''+val_a.anno,
                 seriesIndex:0,
@@ -576,7 +578,7 @@ angular.module("areacapp")
     };
     var dati = []
     _.each(_.indexBy(nDataSet, 'anno'), function(val_a){
-        console.log(val_a.anno)
+        //console.log(val_a.anno)
         var d = {
                 originalKey:''+val_a.anno,
                 seriesIndex:0,
@@ -728,7 +730,210 @@ angular.module("areacapp")
     return { opzioni : opzioni, dati : dati }
     };
 
-      
+
+    var GraphReport_9 = function(nDataSet) {
+
+        var dizOrario = [{ore: "00:00:00", id: 0}, {ore: "00:30:00", id:1}, {ore: "01:00:00", id:2}, {ore: "01:30:00", id:3}, {ore: "02:00:00", id:4}, {ore: "02:30:00", id:5}, {ore: "03:00:00", id:6}, {ore: "03:30:00", id:7}, {ore: "04:00:00", id:8}, {ore: "04:30:00", id:9}, {ore: "05:00:00", id:10}, {ore: "05:30:00", id:11}, {ore: "06:00:00", id:12}, {ore: "06:30:00", id:13}, {ore: "07:00:00", id:14}, {ore: "07:30:00", id:15}, {ore: "08:00:00", id: 16}, {ore: "08:30:00", id: 17}, {ore: "09:00:00", id: 18}, {ore: "09:30:00", id: 19}, {ore: "10:00:00", id: 20}, {ore: "10:30:00", id: 21}, {ore: "11:00:00", id: 22},   
+            {ore: "11:30:00", id: 23}, {ore: "12:00:00", id: 24}, {ore: "12:30:00", id: 25}, {ore: "13:00:00", id: 26}, {ore: "13:30:00", id: 27}, {ore: "14:00:00", id: 28}, {ore: "14:30:00", id: 29}, {ore: "15:00:00", id: 30}, {ore: "15:30:00", id: 31}, {ore: "16:00:00", id: 32}, {ore: "16:30:00", id: 33}, {ore: "17:00:00", id: 34}, {ore: "17:30:00", id: 35}, {ore: "18:00:00", id: 36}, {ore: "18:30:00", id: 37}, {ore: "18:00:00", id: 38}, {ore: "18:30:00", id: 39}, {ore: "19:00:00", id: 40}, {ore: "19:30:00", id: 41}, {ore: "20:00:00", id: 42}, {ore: "20:30:00", id: 43}, {ore: "21:00:00", id: 44}, {ore: "21:30:00", id: 45}, {ore: "22:00:00", id: 46}, {ore: "22:30:00", id: 47}, {ore: "23:00:00", id: 48}, {ore: "23:30:00", id: 49}]
+
+        var fasce_orarie = _.uniq(_.map(dizOrario,  function(num){return num.ore;}))
+        
+        var convertiOrario = function(id) {
+            return (_.find(dizOrario, function(num){ return num.id == id; })).ore
+        }
+
+    
+
+
+
+        //console.log(_.indexBy(nDataSet, 'periodo'));
+
+        var last = _.where(nDataSet, {periodo:'last365'});
+        //var last = _.where(nDataSet, {periodo:'dal2013'});
+        //console.log(last)
+        var serie = _.uniq(_.pluck(last, 'descr'));
+
+        //console.log(last);
+        //console.log(serie);
+
+
+        var opzioni = {
+                chart: {
+                    type: 'multiChart',
+                    height: 650,
+                    margin : {
+                        top: 100,
+                        right: 100,
+                        bottom: 150,
+                        left: 80
+                    },
+                legend: {
+                    margin: {   
+                        top: 30,
+                        right: 0,
+                        bottom: 30,
+                        left: -200
+                        },
+                },
+                //color: d3.scale.category10().range(),
+                useInteractiveGuideline: false,
+                showValues: true,
+                duration: 500,
+                reduceXTicks: false,
+                                labelSunbeamLayout: true,
+//                x: function(d){ return d.ora; },
+//                y: function(d){ return d.transiti; },
+
+                xAxis: {axisLabel: 'Orario',
+                    rotateLabels: -90,
+                    tickFormat: function(d){
+                        return (convertiOrario(d))
+                    }
+                },
+                yAxis1: {   
+                                    //stacked: true,
+
+                    tickFormat: function(d){
+                        return d3.format('.0f')(d);
+                    }
+                }
+            }
+        };
+
+        var converti = function(p){
+            if (p == "00:00:00") {return 0;}
+            if (p == "00:30:00") {return 1;}
+            if (p == "01:00:00") {return 2;}
+            if (p == "01:30:00") {return 3}
+            if (p == "02:00:00") {return 4}
+            if (p == "02:30:00") {return 5}
+            if (p == "03:00:00") {return 6}
+            if (p == "03:30:00") {return 7}
+            if (p == "04:00:00") {return 8}
+            if (p == "04:30:00") {return 9}
+            if (p == "05:00:00") {return 10}
+            if (p == "05:30:00") {return 11}
+            if (p == "06:00:00") {return 12}
+            if (p == "06:30:00") {return 13}
+            if (p == "07:00:00") {return 14}
+            if (p == "07:30:00") {return 15}
+            if (p == "08:00:00") {return 16}
+            if (p == "08:30:00") {return 17}
+            if (p == "09:00:00") {return 18}
+            if (p == "09:30:00") {return 19}
+            if (p == "10:00:00") {return 20}
+            if (p == "10:30:00") {return 21}
+            if (p == "11:00:00") {return 22}    
+            if (p == "11:30:00") {return 23}
+            if (p == "12:00:00") {return 24}
+            if (p == "12:30:00") {return 25}
+            if (p == "13:00:00") {return 26}
+            if (p == "13:30:00") {return 27}
+            if (p == "14:00:00") {return 28}
+            if (p == "14:30:00") {return 29}
+            if (p == "15:00:00") {return 30}
+            if (p == "15:30:00") {return 31}
+            if (p == "16:00:00") {return 32}
+            if (p == "16:30:00") {return 33}
+            if (p == "17:00:00") {return 34}
+            if (p == "17:30:00") {return 35}
+            if (p == "18:00:00") {return 36}
+            if (p == "18:30:00") {return 37}
+            if (p == "18:00:00") {return 38}
+            if (p == "18:30:00") {return 39}
+            if (p == "19:00:00") {return 40}
+            if (p == "19:30:00") {return 41}
+            if (p == "20:00:00") {return 42}
+            if (p == "20:30:00") {return 43;}
+            if (p == "21:00:00") {return 44;}
+            if (p == "21:30:00") {return 45;}
+            if (p == "22:00:00") {return 46;}
+            if (p == "22:30:00") {return 47;}
+            if (p == "23:00:00") {return 48;}
+            if (p == "23:30:00") {return 49;}
+            }
+
+
+        var serie = _.map(serie, function(obj){
+            //console.log(obj);
+            
+//            return obj;
+             return   {
+                    color: 'rgba('+Math.trunc(Math.random()*255)+', '+Math.trunc(Math.random()*255)+', '+Math.trunc(Math.random()*255)+', 1)',
+                    key: obj,
+                    originalKey:obj,
+                    seriesIndex:1,
+                    type:"line",
+                    yAxis:1,
+                    //area:true,
+                    values: _.map(_.where(last, {descr:obj}), function(num) { var a = _.pick( num, 'ora', 'transiti_non_areac', 'transiti_areac'); 
+
+
+                                                                            var aggrega = function(){
+                                                                                if (parseInt(a.transiti_non_areac)== 0) {return parseInt(a.transiti_areac)};
+                                                                                return  parseInt(a.transiti_non_areac);};
+                                                                            //a.x = a.ora;
+                                                                            
+                                                                            a.y = aggrega()
+                                                                            a.x = converti(a.ora)
+                                                                            a.series = 1
+
+                                                                            //console.log(a)
+
+                                                                            return _.pick(a, 'series', 'y', 'x')})
+                }
+
+        }
+
+            );
+//        console.log(serie)
+
+        //var dati = [_.first(serie),];
+        //var dati = serie //_.initial(serie, 34);
+
+        var giorni = ['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 'Domenica'];
+
+        var dati = (_.map(giorni,  function(g){
+            var gg = g;
+            return {tipogiorno: gg, dati: _.compact(_.map(serie, function(obj){if (obj.key.includes(gg)){return obj}})) };
+        })
+        );
+
+        //console.log(dati);
+        
+
+        var dati_tipogiorno = []
+        _.each(giorni, function(v){
+            _.each(serie, function(o){ 
+                //console.log(v)
+                if (o.key == v)
+                    {
+                        //console.log(o)
+                        dati_tipogiorno.push(o);
+                    }
+
+            })
+        });
+
+        //console.log(dati_tipogiorno);
+
+       
+        //var dati = serie;
+        //console.log(dati)
+ 
+        return { opzioni : opzioni, dati : dati, dati_tipogiorno: dati_tipogiorno,  fasce_orarie: fasce_orarie,  }
+
+};
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+///  FINE GRAPHREPORT //////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
     return {
         getReport : getReport, 
         GraphReport_1 : GraphReport_1,
@@ -739,11 +944,28 @@ angular.module("areacapp")
         GraphReport_6 : GraphReport_6,
         GraphReport_7 : GraphReport_7,
         GraphReport_8 : GraphReport_8,
+        GraphReport_9 : GraphReport_9
     };
 })
-
-
-    .factory("areacappService", function($http, $q) {
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+.factory("areacappService", function($http, $q) {
 
     var getBase = function() {
         //console.log('service')
@@ -767,7 +989,7 @@ angular.module("areacapp")
                 AndamentoOrarioUltimoPeriodoPromise
                 ])
             .then(function(data){
-                console.log(data)
+                //console.log(data)
                 var stream = { 'cart_varchi':data[0].data.dati, 
                                'andamenti_areac_last':data[1].data.dati,
                                'andamenti_giorno_funzionamento':data[2].data.dati,
@@ -789,6 +1011,28 @@ angular.module("areacapp")
     };
 })
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .factory("utilsDataSetService", function() {
 
     var fromId2NomeVarco = function(idVarco, datasetVarchi){
@@ -805,7 +1049,7 @@ angular.module("areacapp")
 
     var giorniAreaC = function(g, funzionamentiGiorni){
         var out = _.filter(funzionamentiGiorni, function(num) { return num.giorno == g; })
-        console.log(out.length)
+        //console.log(out.length)
         if (out.length == 0 ) { return true; }
         return false;
         // aggiungere controllo che sia primo o ultimo del dataset
@@ -1282,7 +1526,7 @@ angular.module("areacapp")
 
     var graphMultiTest = function(nDataSet, oggiOrarioUltimoPeriodo, calendario) {
 
-        console.log(oggiOrarioUltimoPeriodo)
+        //console.log(oggiOrarioUltimoPeriodo)
 
         var opzioni = {
             chart: {

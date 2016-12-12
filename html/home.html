@@ -27,15 +27,16 @@
 </div>
 
 
-<div class="container-fluid  animated slideInDown" style="padding-top:55px;background: #961212;min-height: 350px;color:#fff;">
+<div class="container-fluid" style="padding-top:55px;background: #961212;min-height: 350px;color:#fff;">
 	<div class="jumbotron" style="background: rgba(0,0,0,0);">
 	  <h1 class="text-center" style="font-family: 'Orbitron', sans-serif;">Ingressi</h1>
+	  <p class="text-center" style="font-family: 'Orbitron', sans-serif;" >Andamenti per giorno</p>
 	</div>
 </div>
 
 
 
-<div class="container-fluid animated slideInUp" >
+<div class="container-fluid" >
 
 
 <div class="col-lg-12" style="background-color: #fff;">
@@ -68,7 +69,7 @@
 					    <span class="badge" style="background-color: rgba(50,190,230,1);color:#000;font-size:1.1em;">{{dataSetDelGiorno.oggiFunzionamenti[0].veicoli | number: 0}}</span>
 					    Veicoli rilevati
 					  </li>										  
-					  <li class="list-group-item" style="font-size:1.3em;border:none;box-shadow: none;">
+					  <li ng-if="false" class="list-group-item" style="font-size:1.3em;border:none;box-shadow: none;">
 					    <span class="badge" style="background-color: green;font-size:1.1em;">{{dataSetDelGiorno.oggiFunzionamenti[0].pagamento_transiti | currency:"€ ":0}}</span>
 					    Introito potenziale rilevato
 					  </li>					  					  
@@ -94,7 +95,7 @@
 						    <span class="badge" style="background-color: red;">{{dataSetDelGiorno.oggiFunzionamenti[0].guasti/42*100 | number: 1}}%</span>
 						    Varchi guasti
 						  </li>
-						  <li class="list-group-item" style="border:none;">
+						  <li ng-if="false" class="list-group-item" style="border:none;">
 						    <span class="badge" style="background-color: gray;">{{dataSetDelGiorno.oggiFunzionamenti[0].introito_mancato | currency:"€ ":0}}</span>
 						    Introito Mancato 
 						  </li>					  						  
@@ -109,9 +110,10 @@
 			</div>
 		</div>
 		<div class="row" style="margin-top:25px;margin-bottom:25px;">
-				<h1 class="text-center" style="margin-bottom: 100px;">Transiti per varco nelle fasce orarie con provvedimento attivo</h1>
-				<div class="col-lg-10 col-lg-offset-1">
-					
+				
+				<div class="col-lg-10 col-lg-offset-1" style="background-color: rgba(0,0,0,0.0);border-radius: 10px;padding:10px;">
+					<h3 class="text-center" style="margin-bottom: 20px;">Transiti per varco nelle fasce orarie con provvedimento attivo</h3>
+
 					<nvd3 ng-if="pp" options="dataSetGraph.oggiAndamentoVarchi.opzioni" data="dataSetGraph.oggiAndamentoVarchi.dati"></nvd3>
 						
 				</div>
